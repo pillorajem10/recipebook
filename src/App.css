@@ -1,0 +1,103 @@
+/*navbar*/
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+flex-direction: row;
+overflow: hidden;
+background-color: #000000;
+}
+
+html {
+   height: 100%;
+}
+
+li a {
+display: block;
+color: white;
+text-align: center;
+padding: 1.8rem 1rem;
+text-decoration: none;
+}
+
+li img{
+  width: 20rem;
+}
+
+li a:hover {
+color: gray;
+}
+
+.welcomeTitle{
+  font-family: 'Lobster', cursive;
+  color: white;
+  font-Size: 3rem;
+  margin-right: 5%;
+}
+
+
+/* SIGNUP /SIGNIN PAGE */
+.form-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.errorBox{
+  font-size: 1.5rem;
+  margin-top: 2%;
+  font-weight: bold;
+}
+
+/*card*/
+
+.container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  flex-direction: row;
+  margin-top: 2%;
+}
+
+.card{
+  margin: 1%;
+  max-height: 100%;
+  max-Width: 30rem;
+  text-decoration: none;
+  color: black;
+}
+
+.loading{
+ margin-left: 48%;
+ margin-top: 15%;
+}
+
+/*details*/
+.details-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 1%;
+}
+
+.default{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lobster', cursive;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.recipeName{
+  font-family: 'Lobster', cursive;
+  font-size: 5rem;
+  margin-top: 1%;
+}
