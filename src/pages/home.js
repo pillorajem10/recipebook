@@ -26,7 +26,8 @@ const Home = (props) => {
         recipes.map(recipes =>
           <div className = 'card'>
             <b style = {{fontSize:25}}>{recipes.name}</b>
-            <Link to = {`/recipe/${recipes._id}`}><img
+            <Link to = {`/recipe/${recipes._id}`}>
+            <img
               src={`/recipe/photo/${recipes._id}`}
               style={{ maxHeight: "20rem", maxWidth: "20rem" }}
               alt = {recipes.name}

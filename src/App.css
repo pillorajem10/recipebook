@@ -27,6 +27,7 @@ li img{
 
 li a:hover {
 color: gray;
+text-decoration: none;
 }
 
 .welcomeTitle{

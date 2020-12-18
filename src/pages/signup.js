@@ -10,14 +10,12 @@ const Signup = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const { loading, user, error } = useSelector(state => state.userRegister);
+  const { loading, user, error, success } = useSelector(state => state.userRegister);
   const dispatch = useDispatch();
-
-  const redirect = '/';
 
   useEffect(() => {
     if (user) {
-      props.history.push(redirect);
+      //
     }
     return () => {
       //
@@ -35,6 +33,12 @@ const Signup = (props) => {
       >
           {error}
       </center>
+  );
+
+  const showSuccess= () => (
+    <center className="errorBox" style={{ display: success ? '' : 'none' }}>
+        New account is created. You may now <Link style = {{color: 'blue', textDecoration:'none'}} to='/'>Sign In</Link>
+    </center>
   );
 
   const signUpForm = () => (
@@ -93,6 +97,7 @@ const Signup = (props) => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> :
     <>
+     {showSuccess()}
      {showError()}
      {signUpForm()}
     </>
