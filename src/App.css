@@ -122,3 +122,21 @@ text-decoration: none;
 .instruction-container {
   flex-wrap: wrap;
 }
+
+/*Admin page*/
+
+.adminPageTitle {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+}
+
+.adminLinks{
+  color: red;
+  text-decoration: none;
+}
+
+.adminLinks:hover{
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+}

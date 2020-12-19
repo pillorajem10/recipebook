@@ -24,6 +24,13 @@ const Navbar = (props) => {
         <>
           <li><Link to = '/home'>Home</Link></li>
           <li><Link to = '/about'>About Us</Link></li>
+          {
+            user && user.role === 1 ? (
+              <li><Link to = '/admin'>Admin</Link></li>
+            ) : (
+              null
+            )
+          }
           <li><Link onClick={handleLogout}>Sign Out</Link></li>
         </>
       ) : (

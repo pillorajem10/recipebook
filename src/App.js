@@ -14,8 +14,12 @@ import Signin from './pages/signin';
 import Home from './pages/home';
 import About from './pages/about';
 import Default from './pages/default';
-import AdminPage from './pages/adminPage';
 import RecipeDetails from './pages/recipeDetails';
+
+//adminPage
+import AdminPage from './adminPage/adminPage';
+import CreateRecipe from './adminPage/createRecipe';
+import CreateCategory from './adminPage/createCategory';
 
 //routing
 import PrivateRoute from './routes/privateRoute';
@@ -33,6 +37,8 @@ const App = () => {
          <PrivateRoute path='/about' component={About}/>
          <Route path='/recipe/:id' component={RecipeDetails}/>
          <AdminRoute path='/admin' component={AdminPage}/>
+         <AdminRoute path='/createrecipe' component={CreateRecipe}/>
+         <AdminRoute path='/createcategory' component={CreateCategory}/>
          <Route component={Default}/>
       </Switch>
     </BrowserRouter>
