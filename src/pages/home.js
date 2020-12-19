@@ -11,6 +11,8 @@ const Home = (props) => {
   const { recipes, loading, error } = recipeList;
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.userSignin);
+
   useEffect(() => {
     dispatch(listRecipes());
     return () => {
@@ -21,21 +23,30 @@ const Home = (props) => {
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
-    <div className = 'container'>
-      {
-        recipes.map(recipes =>
-          <div className = 'card'>
-            <b style = {{fontSize:25}}>{recipes.name}</b>
-            <Link to = {`/recipe/${recipes._id}`}>
-            <img
-              src={`/recipe/photo/${recipes._id}`}
-              style={{ maxHeight: "20rem", maxWidth: "20rem" }}
-              alt = {recipes.name}
-            /></Link>
-          </div>
-        )
-      }
-    </div>
+    <>
+      {user ? (
+         <>
+           <center className = 'welcomeTitle'>Welcome! {user.name}</center>
+         </>
+       ) : (
+      null
+      )}
+      <div className = 'container'>
+        {
+          recipes.map(recipes =>
+            <div className = 'card'>
+              <b style = {{fontSize:25}}>{recipes.name}</b>
+              <Link to = {`/recipe/${recipes._id}`}>
+              <img
+                src={`/recipe/photo/${recipes._id}`}
+                style={{ maxHeight: "20rem", maxWidth: "20rem" }}
+                alt = {recipes.name}
+              /></Link>
+            </div>
+          )
+        }
+      </div>
+    </>
   )
 }
 

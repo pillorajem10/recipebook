@@ -22,7 +22,6 @@ const Navbar = (props) => {
     <li className = 'title'><img src = {logo}/></li>
       {user ? (
         <>
-          <li className = 'welcomeTitle'>Welcome back! {user.name}</li>
           <li><Link to = '/home'>Home</Link></li>
           <li><Link to = '/about'>About Us</Link></li>
           <li><Link onClick={handleLogout}>Sign Out</Link></li>
