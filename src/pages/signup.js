@@ -45,7 +45,7 @@ const Signup = (props) => {
     <div className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
         <div class="form-group">
-          <label>Name</label>
+          <b style = {{ fontSize:20 }} >Name</b>
           <input id = 'name'
             onChange={(e) => setName(e.target.value)}
             name = 'name'
@@ -56,7 +56,7 @@ const Signup = (props) => {
           />
         </div>
         <div class="form-group">
-          <label>Email address</label>
+          <b style = {{ fontSize:20 }} >Email address</b>
           <input id = 'email'
             onChange={(e) => setEmail(e.target.value)}
             name = 'email'
@@ -67,7 +67,7 @@ const Signup = (props) => {
           />
         </div>
         <div class="form-group">
-          <label>Password</label>
+          <b style = {{ fontSize:20 }} >Password</b>
           <input id = 'password'
             onChange={(e) => setPassword(e.target.value)}
             name = 'password'
@@ -78,7 +78,7 @@ const Signup = (props) => {
           />
         </div>
         <div class="form-group">
-          <label>Confirm Password</label>
+          <b style = {{ fontSize:20 }} >Confirm Password</b>
           <input id = 'password2'
             onChange={(e) => setPassword2(e.target.value)}
             name = 'password2'

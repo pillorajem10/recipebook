@@ -51,7 +51,7 @@ const Signin = (props) => {
     <div  className = 'container'>
       <form className = 'form-container' onSubmit = {submitHandler}>
         <div class="form-group">
-          <label>Email address</label>
+          <b style = {{ fontSize:20 }} >Email address</b>
           <input type="email"
            name = 'email'
            id = 'email'
@@ -62,7 +62,7 @@ const Signin = (props) => {
           />
         </div>
         <div class="form-group">
-          <label>Password</label>
+          <b style = {{ fontSize:20 }} >Password</b>
           <input type="password"
            name = 'password'
            id = 'password'

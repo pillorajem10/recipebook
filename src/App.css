@@ -33,7 +33,7 @@ text-decoration: none;
 
 .welcomeTitle{
   font-family: 'Lobster', cursive;
-  font-Size: 3rem;
+  font-Size: 2.5rem;
   text-align: center;
 }
 
@@ -83,7 +83,7 @@ text-decoration: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: .5%;
+  margin-left: .5%;
   flex-direction: row;
   background-color: #fffdd0;
   text-align: center;
