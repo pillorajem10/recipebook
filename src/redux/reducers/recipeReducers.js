@@ -4,7 +4,7 @@ import {
   RECIPE_LIST_FAIL,
   RECIPE_DETAIL_REQUEST,
   RECIPE_DETAIL_SUCCESS,
-  RECIPE_DETAIL_FAIL
+  RECIPE_DETAIL_FAIL,
 }
 from '../types';
 
@@ -20,6 +20,7 @@ const recipeListReducer = (state = {recipes: [] }, action) => {
       return state;
   }
 }
+
 
 const recipeDetailsReducer = (state = {recipe: {} }, action) => {
   switch(action.type){

@@ -118,3 +118,7 @@ text-decoration: none;
 .instruction-container li{
   list-style-type: square;
 }
+
+.instruction-container {
+  flex-wrap: wrap;
+}

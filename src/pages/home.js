@@ -20,7 +20,6 @@ const Home = (props) => {
     };
   }, [])
 
-
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
