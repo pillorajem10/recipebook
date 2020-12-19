@@ -39,7 +39,7 @@ const Home = (props) => {
               <Link to = {`/recipe/${recipes._id}`}>
               <img
                 src={`/recipe/photo/${recipes._id}`}
-                style={{ maxHeight: "20rem", maxWidth: "20rem" }}
+                style={{ maxHeight: "30rem", maxWidth: "30rem" }}
                 alt = {recipes.name}
               /></Link>
             </div>
