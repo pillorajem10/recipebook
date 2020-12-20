@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
 //styling
 import './App.css'

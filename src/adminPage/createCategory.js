@@ -33,9 +33,9 @@ const CreateCategory = () => {
       </center>
   );
 
-  const showSuccess= () => (
+  const showSuccess = () => (
     <center className="errorBox text-info" style={{ display: success ? '' : 'none' }}>
-      New category created
+      {category.name} category created!
     </center>
   );
 
