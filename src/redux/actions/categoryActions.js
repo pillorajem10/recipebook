@@ -13,7 +13,7 @@ const addCategory = (name) => async (dispatch, getState) => {
     const { userSignin: { user }, } = getState();
     const { data } = await axios.post('/category/create/' + user._id,  { name }, {
       headers: {
-        Authorization: 'Bearer ' + user.token,
+        Authorization: `Bearer ${user.token}`,
       },
     });
     dispatch({ type: CATEGORY_ADD_SUCCESS, payload: data });
