@@ -34,7 +34,7 @@ const App = () => {
          <PrivateRoute path='/home' component={Home}/>
          <Route path='/signup' component={Signup}/>
          <PrivateRoute path='/about' component={About}/>
-         <Route path='/recipe/:id' component={RecipeDetails}/>
+         <PrivateRoute path='/recipe/:id' component={RecipeDetails}/>
          <AdminRoute path='/admin' component={AdminPage}/>
          <AdminRoute path='/createrecipe' component={CreateRecipe}/>
          <AdminRoute path='/createcategory' component={CreateCategory}/>

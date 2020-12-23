@@ -7,7 +7,7 @@ const AdminPage = () => {
   const { user } = useSelector((state) => state.userSignin);
 
   return (
-    <div style = {{ fontSize: 30 }}>
+    <div style = {{ fontSize: 25 }}>
       <center className = 'adminPageTitle' style = {{marginTop: '1%'}}>
         Admin Profile
       </center>

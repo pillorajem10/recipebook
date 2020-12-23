@@ -81,12 +81,11 @@ text-decoration: none;
 /*details*/
 .details-container{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-left: .5%;
-  flex-direction: row;
   background-color: #fffdd0;
   text-align: center;
+  flex-flow: row wrap;
 }
 
 .default{

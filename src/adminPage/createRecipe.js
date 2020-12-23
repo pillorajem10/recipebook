@@ -34,7 +34,7 @@ const CreateRecipe = (props) => {
   const [instruction9, setInstruction9] = useState('');
   const [instruction10, setInstruction10] = useState('');
   const [photo, setPhoto] = useState('');
-
+  const [photo1, setPhoto1] = useState('');
 
   const { loading, recipe, error, success } = useSelector(state => state.addRecipe);
   const { categories } = useSelector(state => state.listCategories);
@@ -85,7 +85,8 @@ const CreateRecipe = (props) => {
       ingredients8,
       ingredients9,
       ingredients10,
-      photo
+      photo,
+      photo1
     ));
   }
 
@@ -185,7 +186,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 4 (not required)"
+           placeholder = "Enter Ingredient 4 (if necessary)"
            name = 'ingredients3'
            id = 'ingredients3'
            onChange={(e) => setIngredients3(e.target.value)}
@@ -196,7 +197,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 5 (not required)"
+           placeholder = "Enter Ingredient 5 (if necessary)"
            name = 'ingredients4'
            id = 'ingredients4'
            onChange={(e) => setIngredients4(e.target.value)}
@@ -207,7 +208,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 6 (not required)"
+           placeholder = "Enter Ingredient 6 (if necessary)"
            name = 'ingredients5'
            id = 'ingredients5'
            onChange={(e) => setIngredients5(e.target.value)}
@@ -218,7 +219,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 7 (not required)"
+           placeholder = "Enter Ingredient 7 (if necessary)"
            name = 'ingredients6'
            id = 'ingredients6'
            onChange={(e) => setIngredients6(e.target.value)}
@@ -229,7 +230,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 8 (not required)"
+           placeholder = "Enter Ingredient 8 (if necessary)"
            name = 'ingredients7'
            id = 'ingredients7'
            onChange={(e) => setIngredients7(e.target.value)}
@@ -240,7 +241,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 9 (not required)"
+           placeholder = "Enter Ingredient 9 (if necessary)"
            name = 'ingredients8'
            id = 'ingredients8'
            onChange={(e) => setIngredients8(e.target.value)}
@@ -251,7 +252,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 10 (not required)"
+           placeholder = "Enter Ingredient 10 (if necessary)"
            name = 'ingredients9'
            id = 'ingredients9'
            onChange={(e) => setIngredients9(e.target.value)}
@@ -262,7 +263,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 11 (not required)"
+           placeholder = "Enter Ingredient 11 (if necessary)"
            name = 'ingredients10'
            id = 'ingredients10'
            onChange={(e) => setIngredients10(e.target.value)}
@@ -309,7 +310,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 4 (not required)"
+           placeholder = "Enter Instruction 4 (if necessary)"
            name = 'instruction3'
            id = 'instruction3'
            onChange={(e) => setInstruction3(e.target.value)}
@@ -320,7 +321,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 5 (not required)"
+           placeholder = "Enter Instruction 5 (if necessary)"
            name = 'instruction4'
            id = 'instruction4'
            onChange={(e) => setInstruction4(e.target.value)}
@@ -331,7 +332,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 6 (not required)"
+           placeholder = "Enter Instruction 6 (if necessary)"
            name = 'instruction5'
            id = 'instruction5'
            onChange={(e) => setInstruction5(e.target.value)}
@@ -342,7 +343,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 7 (not required)"
+           placeholder = "Enter Instruction 7 (if necessary)"
            name = 'instruction6'
            id = 'instruction6'
            onChange={(e) => setInstruction6(e.target.value)}
@@ -353,7 +354,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 8 (not required)"
+           placeholder = "Enter Instruction 8 (if necessary)"
            name = 'instruction7'
            id = 'instruction7'
            onChange={(e) => setInstruction7(e.target.value)}
@@ -364,7 +365,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 9 (not required)"
+           placeholder = "Enter Instruction 9 (if necessary)"
            name = 'instruction8'
            id = 'instruction8'
            onChange={(e) => setInstruction8(e.target.value)}
@@ -375,7 +376,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 10 (not required)"
+           placeholder = "Enter Instruction 10 (if necessary)"
            name = 'instruction9'
            id = 'instruction9'
            onChange={(e) => setInstruction9(e.target.value)}
@@ -386,7 +387,7 @@ const CreateRecipe = (props) => {
           <input
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 11 (not required)"
+           placeholder = "Enter Instruction 11 (if necessary)"
            name = 'instruction10'
            id = 'instruction10'
            onChange={(e) => setInstruction10(e.target.value)}
@@ -403,6 +404,19 @@ const CreateRecipe = (props) => {
            name = 'photo'
            id = 'photo'
            onChange={(e) => setPhoto(e.target.files[0])}
+          />
+        </div>
+        <div class="form-group">
+          <b style = {{ fontSize:20 }} >Details photo</b>
+          <input
+           type="file"
+           accept="image/*"
+           className = "form-control"
+           required
+           style = {{ height:'60%' }}
+           name = 'photo1'
+           id = 'photo1'
+           onChange={(e) => setPhoto1(e.target.files[0])}
           />
         </div>
         <button type="submit" class="btn btn-dark">Submit</button>

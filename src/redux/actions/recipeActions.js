@@ -50,6 +50,7 @@ const addRecipe = (
   instruction9,
   instruction10,
   photo,
+  photo1
 ) => async (dispatch, getState) => {
   try {
     dispatch({ type: RECIPE_ADD_REQUEST, payload: {
@@ -79,6 +80,7 @@ const addRecipe = (
       instruction9,
       instruction10,
       photo,
+      photo1
      } });
     const { userSignin: { user }, } = getState();
     const bodyFormData = new FormData();
@@ -108,7 +110,8 @@ const addRecipe = (
     bodyFormData.append('instruction9', instruction9);
     bodyFormData.append('instruction10', instruction10);
     bodyFormData.append('photo', photo);
-    const { data } = await axios.post('/recipe/create/' + user._id,  bodyFormData, {
+    bodyFormData.append('photo1', photo1);
+    const { data } = await axios.post(`/recipe/create/${user._id}`,  bodyFormData, {
       headers: {
         Authorization: `Bearer ${user.token}`,
         'Content-Type': 'multipart/form-data',
