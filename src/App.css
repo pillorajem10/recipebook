@@ -83,14 +83,13 @@ text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fffdd0;
   text-align: center;
   flex-flow: row wrap;
 }
 
 .default{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-family: 'Lobster', cursive;
   font-size: 4rem;

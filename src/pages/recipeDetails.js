@@ -24,41 +24,43 @@ const RecipeDetails = (props) => {
     <>
      <center className = 'recipeName'>{recipe.name}</center>
      <div className = 'details-container'>
-       <img
-         src={`/recipe/photo1/${recipe._id}`}
-         style={{ maxHeight: "35rem", maxWidth: "35rem", textAlign: 'center' }}
-         alt = {recipe.name}
-       />
+       <div className = 'card'>
+         <img
+           src={`/recipe/photo1/${recipe._id}`}
+           style={{ maxHeight: "100%", maxWidth: "100%", textAlign: 'center' }}
+           alt = {recipe.name}
+         />
+       </div>
        <ul style={{ maxWidth: "30rem", maxHeight: "30rem"  }} className = 'description card'>
-         Description: <li>{recipe.description}</li>
+         Description: <b>{recipe.description}</b>
        </ul>
        <ul className = 'instruction-container' style={{ width: "30rem" }} className = 'description card'>
          Ingredients:
-         <li className = 'instructions'>{recipe.ingredients}</li>
-         <li className = 'instructions'>{recipe.ingredients1}</li>
-         <li className = 'instructions'>{recipe.ingredients2}</li>
-         <li className = 'instructions'>{recipe.ingredients3}</li>
-         <li className = 'instructions'>{recipe.ingredients4}</li>
-         <li className = 'instructions'>{recipe.ingredients5}</li>
-         <li className = 'instructions'>{recipe.ingredients6}</li>
-         <li className = 'instructions'>{recipe.ingredients7}</li>
-         <li className = 'instructions'>{recipe.ingredients8}</li>
-         <li className = 'instructions'>{recipe.ingredients9}</li>
-         <li className = 'instructions'>{recipe.ingredients10}</li>
+         <b className = 'instructions'>{recipe.ingredients}</b>
+         <b className = 'instructions'>{recipe.ingredients1}</b>
+         <b className = 'instructions'>{recipe.ingredients2}</b>
+         <b className = 'instructions'>{recipe.ingredients3}</b>
+         <b className = 'instructions'>{recipe.ingredients4}</b>
+         <b className = 'instructions'>{recipe.ingredients5}</b>
+         <b className = 'instructions'>{recipe.ingredients6}</b>
+         <b className = 'instructions'>{recipe.ingredients7}</b>
+         <b className = 'instructions'>{recipe.ingredients8}</b>
+         <b className = 'instructions'>{recipe.ingredients9}</b>
+         <b className = 'instructions'>{recipe.ingredients10}</b>
        </ul>
        <ul className = 'instruction-container' style={{  width: "30rem" }} className = 'description card'>
          Instructions:
-         <li className = 'instructions'>{recipe.instruction}</li>
-         <li className = 'instructions'>{recipe.instruction1}</li>
-         <li className = 'instructions'>{recipe.instruction2}</li>
-         <li className = 'instructions'>{recipe.instruction3}</li>
-         <li className = 'instructions'>{recipe.instruction4}</li>
-         <li className = 'instructions'>{recipe.instruction5}</li>
-         <li className = 'instructions'>{recipe.instruction6}</li>
-         <li className = 'instructions'>{recipe.instruction7}</li>
-         <li className = 'instructions'>{recipe.instruction8}</li>
-         <li className = 'instructions'>{recipe.instruction9}</li>
-         <li className = 'instructions'>{recipe.instruction10}</li>
+         <b className = 'instructions'>{recipe.instruction}</b>
+         <b className = 'instructions'>{recipe.instruction1}</b>
+         <b className = 'instructions'>{recipe.instruction2}</b>
+         <b className = 'instructions'>{recipe.instruction3}</b>
+         <b className = 'instructions'>{recipe.instruction4}</b>
+         <b className = 'instructions'>{recipe.instruction5}</b>
+         <b className = 'instructions'>{recipe.instruction6}</b>
+         <b className = 'instructions'>{recipe.instruction7}</b>
+         <b className = 'instructions'>{recipe.instruction8}</b>
+         <b className = 'instructions'>{recipe.instruction9}</b>
+         <b className = 'instructions'>{recipe.instruction10}</b>
        </ul>
      </div>
     </>

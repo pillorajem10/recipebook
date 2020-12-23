@@ -72,7 +72,7 @@ const Signin = (props) => {
            required
           />
         </div>
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="submit" class="btn btn-dark">Sign In</button>
         <div style = {{marginTop: '5%', fontSize:20}}>Don't have an account? <Link style = {{color: 'gray', textDecoration:'none'}} to = '/signup'>Sign Up</Link></div>
       </form>
     </div>

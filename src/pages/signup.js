@@ -88,7 +88,7 @@ const Signup = (props) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-dark">Register</button>
+        <button type="submit" className="btn btn-dark">Sign Up</button>
         <div style = {{marginTop: '5%', fontSize:20}}>Have an account? <Link style = {{color: 'gray', textDecoration:'none'}} to = '/'>Sign In</Link></div>
       </form>
     </div>
