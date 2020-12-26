@@ -8,7 +8,10 @@ import {
   RECIPE_DETAIL_FAIL,
   RECIPE_ADD_REQUEST,
   RECIPE_ADD_SUCCESS,
-  RECIPE_ADD_FAIL
+  RECIPE_ADD_FAIL,
+  RECIPE_REVIEWS_ADD_REQUEST,
+  RECIPE_REVIEWS_ADD_SUCCESS,
+  RECIPE_REVIEWS_ADD_FAIL
 }
 from '../types';
 
@@ -135,6 +138,30 @@ const detailsRecipe = (recipeById) => async (dispatch) => {
   }
 }
 
+const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
+  try {
+    const {
+      userSignin: {
+        user: { token },
+      },
+    } = getState();
+    dispatch({ type: RECIPE_REVIEWS_ADD_REQUEST, payload: review });
+    const { data } = await axios.post(
+      `/recipe/reviews/${recipeId}`,
+      review,
+      {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    dispatch({ type: RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
+  } catch (error) {
+    // report error
+    dispatch({ type: RECIPE_REVIEWS_ADD_FAIL, payload: error.message });
+  }
+};
 
 
-export { listRecipes, detailsRecipe, addRecipe }
+
+export { listRecipes, detailsRecipe, addRecipe, saveRecipeReview }

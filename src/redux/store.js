@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
-import { recipeListReducer, recipeDetailsReducer, recipeAddReducer } from './reducers/recipeReducers';
+import { recipeListReducer, recipeDetailsReducer, recipeAddReducer, recipeAddReviewsReducer } from './reducers/recipeReducers';
 import { userRegisterReducer, userLoginReducer } from './reducers/userReducers';
 import { categoryAddReducer, categoryListReducer } from './reducers/categoryReducers'
 import Cookie from 'js-cookie';
@@ -18,7 +18,8 @@ const reducer = combineReducers({
   userSignin: userLoginReducer,
   addCategory: categoryAddReducer,
   listCategories: categoryListReducer,
-  addRecipe: recipeAddReducer
+  addRecipe: recipeAddReducer,
+  addReview: recipeAddReviewsReducer
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,22 +1,43 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { detailsRecipe } from '../redux/actions/recipeActions';
+import { detailsRecipe, saveRecipeReview } from '../redux/actions/recipeActions';
+import { RECIPE_REVIEWS_ADD_RESET } from '../redux/types';
 
 import { Link } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecipeDetails = (props) => {
+  const [comment, setComment] = useState('');
   const recipeDetails = useSelector(state => state.recipeDetails);
+  const { user } = useSelector((state) => state.userSignin);
   const {recipe, loading, error} = recipeDetails;
+  const recipeReviewSave = useSelector((state) => state.addReview);
+  const { success: recipeSaveSuccess } = recipeReviewSave;
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (recipeSaveSuccess) {
+      alert('Review submitted successfully.');
+      setComment('');
+      dispatch({ type: RECIPE_REVIEWS_ADD_RESET });
+    }
     dispatch(detailsRecipe(props.match.params.id));
     return () => {
     //
     };
-  }, [])
+  }, [recipeSaveSuccess]);
+
+  const submitHandler = (e) => {
+  e.preventDefault();
+  // dispatch actions
+  dispatch(
+    saveRecipeReview(props.match.params.id, {
+      name: user.name,
+      comment: comment,
+    })
+  );
+};
 
 
   return (
@@ -63,6 +84,34 @@ const RecipeDetails = (props) => {
          <b className = 'instructions'>{recipe.instruction10}</b>
        </ul>
      </div>
+     <center>
+       <h2>Reviews</h2>
+
+    <h3>Write a customer review</h3>
+    {user ? (
+      <form onSubmit={submitHandler}>
+        <ul>
+          <li>
+            <label htmlFor="comment">Comment</label>
+            <textarea
+              name="comment"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+          </li>
+          <li>
+            <button type="submit" className="button primary">
+              Submit
+            </button>
+          </li>
+        </ul>
+      </form>
+    ) : (
+      <div>
+        Please <Link to="/signin">Sign-in</Link> to write a review.
+      </div>
+    )}
+     </center>
     </>
   )
 }

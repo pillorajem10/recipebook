@@ -7,7 +7,11 @@ import {
   RECIPE_DETAIL_FAIL,
   RECIPE_ADD_REQUEST,
   RECIPE_ADD_SUCCESS,
-  RECIPE_ADD_FAIL
+  RECIPE_ADD_FAIL,
+  RECIPE_REVIEWS_ADD_REQUEST,
+  RECIPE_REVIEWS_ADD_SUCCESS,
+  RECIPE_REVIEWS_ADD_FAIL,
+  RECIPE_REVIEWS_ADD_RESET
 }
 from '../types';
 
@@ -51,4 +55,19 @@ const recipeDetailsReducer = (state = {recipe: {} }, action) => {
   }
 }
 
-export { recipeListReducer, recipeDetailsReducer, recipeAddReducer }
+const recipeAddReviewsReducer = (state = {}, action) => {
+   switch (action.type)  {
+   case RECIPE_REVIEWS_ADD_REQUEST:
+     return { loading: true };
+   case RECIPE_REVIEWS_ADD_SUCCESS:
+     return { loading: false, review: action.payload, success: true };
+   case RECIPE_REVIEWS_ADD_FAIL:
+     return { loading: false, errror: action.payload };
+   case RECIPE_REVIEWS_ADD_RESET:
+     return {};
+   default:
+     return state;
+  }
+}
+
+export { recipeListReducer, recipeDetailsReducer, recipeAddReducer, recipeAddReviewsReducer }
