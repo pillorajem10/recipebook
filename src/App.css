@@ -19,7 +19,7 @@ color: white;
 text-align: center;
 padding: 1.8rem 1rem;
 text-decoration: none;
-float: right;
+float: right; 
 }
 
 li img{
@@ -63,6 +63,7 @@ text-decoration: none;
   text-align: center;
   flex-direction: row;
   margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .card{

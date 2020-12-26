@@ -18,7 +18,7 @@ const RecipeDetails = (props) => {
 
   useEffect(() => {
     if (recipeSaveSuccess) {
-      alert('Review submitted successfully.');
+      alert('Comment successfully added.');
       setComment('');
       dispatch({ type: RECIPE_REVIEWS_ADD_RESET });
     }
@@ -35,6 +35,7 @@ const RecipeDetails = (props) => {
     saveRecipeReview(props.match.params.id, {
       name: user.name,
       comment: comment,
+      userRole: user.role
     })
   );
 };
@@ -84,33 +85,53 @@ const RecipeDetails = (props) => {
          <b className = 'instructions'>{recipe.instruction10}</b>
        </ul>
      </div>
+     <hr/>
      <center>
-       <h2>Reviews</h2>
-
-    <h3>Write a customer review</h3>
-    {user ? (
-      <form onSubmit={submitHandler}>
-        <ul>
-          <li>
-            <label htmlFor="comment">Comment</label>
-            <textarea
-              name="comment"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            ></textarea>
-          </li>
-          <li>
-            <button type="submit" className="button primary">
-              Submit
-            </button>
-          </li>
-        </ul>
-      </form>
-    ) : (
-      <div>
-        Please <Link to="/signin">Sign-in</Link> to write a review.
-      </div>
-    )}
+       <h2>Comments</h2>
+       {recipe.reviews && recipe.reviews.length > 0 ? (
+         <div>
+           {recipe.reviews && recipe.reviews.map((review) => (
+             <div style = {{ marginTop: '1.5rem' }} key={review._id}>
+               { review.userRole === 1 ? (
+                 <b style = {{ fontSize: '1.2rem' }} >{review.name} (Admin)</b>
+               ) : (
+                 <b style = {{ fontSize: '1.2rem' }} >{review.name}</b>
+               ) }
+               <div style = {{ fontSize: '1.5rem' }} >{review.comment}</div>
+             </div>
+           ))}
+         </div>
+       ) : (
+         <h3>
+          There are no comments. Write the first one
+         </h3>
+       )}
+       <hr/>
+       <h2>Write a comment</h2>
+       {user ? (
+         <div  className = 'container'>
+           <form className = 'form-container' onSubmit = {submitHandler}>
+             <div class="form-group">
+               <textarea
+                rows = '5'
+                type = "text"
+                className = "form-control"
+                placeholder = "Do you have comments in this recipe? Write here."
+                required
+                name = 'comment'
+                id = 'comment'
+                value = {comment}
+                onChange={(e) => setComment(e.target.value)}
+               />
+             </div>
+             <button type="submit" class="btn btn-dark">Comment</button>
+           </form>
+         </div>
+       ) : (
+         <div>
+           Please <Link to="/">Sign-in</Link> to write a reviews.
+         </div>
+       )}
      </center>
     </>
   )
