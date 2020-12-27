@@ -4,10 +4,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listCategories } from '../redux/actions/categoryActions';
 import { addRecipe } from '../redux/actions/recipeActions'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import SaveIcon from '@material-ui/icons/Save';
 
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 const CreateRecipe = (props) => {
-
+  const classes = useStyles();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -106,14 +124,15 @@ const CreateRecipe = (props) => {
   );
 
   const addRecipeForm = () => (
+    <>
+    <center className = 'welcomeTitle'>Create new recipe here</center>
     <div className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >New recipe</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter the name of the new recipe"
+           label = 'Enter the name of the new recipe'
            required
            name = 'name'
            id = 'name'
@@ -121,12 +140,11 @@ const CreateRecipe = (props) => {
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Description of the recipe</b>
           <textarea
            rows = '5'
            type = "text"
            className = "form-control"
-           placeholder = "Enter the name of the new recipe"
+           placeholder = "Enter the description of the new recipe"
            required
            name = 'description'
            id = 'description'
@@ -134,7 +152,6 @@ const CreateRecipe = (props) => {
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Category</b>
           <select class="form-control" id="exampleFormControlSelect1" name = 'category' id = 'category' onChange={(e) => setCategory(e.target.value)}>
             <option>Select category</option>
             {categories &&
@@ -146,35 +163,32 @@ const CreateRecipe = (props) => {
           </select>
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 1</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 1 (required)"
            required
+           label = 'Enter Ingredient 1 (required)'
            name = 'ingredients'
            id = 'ingredients'
            onChange={(e) => setIngredients(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 2</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 2 (required)"
            required
+           label = 'Enter Ingredient 2 (required)'
            name = 'ingredients1'
            id = 'ingredients1'
            onChange={(e) => setIngredients1(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 3</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
+           label = 'Enter Ingredient 3 (required)'
            className = "form-control"
-           placeholder = "Enter Ingredient 3 (required)"
            required
            name = 'ingredients2'
            id = 'ingredients2'
@@ -182,111 +196,101 @@ const CreateRecipe = (props) => {
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 4</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 4 (if necessary)"
            name = 'ingredients3'
            id = 'ingredients3'
+           label = 'Enter Ingredient 4 (if necessary)'
            onChange={(e) => setIngredients3(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 5</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 5 (if necessary)"
            name = 'ingredients4'
+           label = 'Enter Ingredient 5 (if necessary)'
            id = 'ingredients4'
            onChange={(e) => setIngredients4(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 6</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 6 (if necessary)"
+           label = 'Enter Ingredient 6 (if necessary)'
            name = 'ingredients5'
            id = 'ingredients5'
            onChange={(e) => setIngredients5(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 7</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 7 (if necessary)"
+           label = 'Enter Ingredient 7 (if necessary)'
            name = 'ingredients6'
            id = 'ingredients6'
            onChange={(e) => setIngredients6(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 8</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 8 (if necessary)"
+           label = 'Enter Ingredient 8 (if necessary)'
            name = 'ingredients7'
            id = 'ingredients7'
            onChange={(e) => setIngredients7(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 9</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 9 (if necessary)"
+           label = 'Enter Ingredient 9 (if necessary)'
            name = 'ingredients8'
            id = 'ingredients8'
            onChange={(e) => setIngredients8(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 10</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 10 (if necessary)"
+           label = 'Enter Ingredient 10 (if necessary)'
            name = 'ingredients9'
            id = 'ingredients9'
            onChange={(e) => setIngredients9(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Ingredient 11</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Ingredient 11 (if necessary)"
+           label = 'Enter Ingredient 11 (if necessary)'
            name = 'ingredients10'
            id = 'ingredients10'
            onChange={(e) => setIngredients10(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 1</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 1 (required)"
            required
            name = 'instruction'
+           label = 'Enter Instruction 1 (required)'
            id = 'instruction'
            onChange={(e) => setInstruction(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 2</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 2 (required)"
+           label = 'Enter Instruction 2 (required)'
            required
            name = 'instruction1'
            id = 'instruction1'
@@ -294,11 +298,10 @@ const CreateRecipe = (props) => {
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 3</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 3 (required)"
+           label = 'Enter Instruction 3 (required)'
            required
            name = 'instruction2'
            id = 'instruction2'
@@ -306,123 +309,120 @@ const CreateRecipe = (props) => {
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 4</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 4 (if necessary)"
            name = 'instruction3'
+           label = 'Enter Instruction 4 (if necessary)'
            id = 'instruction3'
            onChange={(e) => setInstruction3(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 5</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 5 (if necessary)"
+           label = 'Enter Instruction 5 (if necessary)'
            name = 'instruction4'
            id = 'instruction4'
            onChange={(e) => setInstruction4(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 6</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 6 (if necessary)"
+           label = 'Enter Instruction 6 (if necessary)'
            name = 'instruction5'
            id = 'instruction5'
            onChange={(e) => setInstruction5(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 7</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 7 (if necessary)"
+           label = 'Enter Instruction 7 (if necessary)'
            name = 'instruction6'
            id = 'instruction6'
            onChange={(e) => setInstruction6(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 8</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 8 (if necessary)"
+           label = 'Enter Instruction 8 (if necessary)'
            name = 'instruction7'
            id = 'instruction7'
            onChange={(e) => setInstruction7(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 9</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 9 (if necessary)"
+           label = 'Enter Instruction 9 (if necessary)'
            name = 'instruction8'
            id = 'instruction8'
            onChange={(e) => setInstruction8(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 10</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 10 (if necessary)"
+           label = 'Enter Instruction 10 (if necessary)'
            name = 'instruction9'
            id = 'instruction9'
            onChange={(e) => setInstruction9(e.target.value)}
           />
         </div>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >Instruction 11</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            className = "form-control"
-           placeholder = "Enter Instruction 11 (if necessary)"
+           label = 'Enter Instruction 11 (if necessary)'
            name = 'instruction10'
            id = 'instruction10'
            onChange={(e) => setInstruction10(e.target.value)}
           />
         </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Photo</b>
+        <div className={classes.root}>
           <input
-           type="file"
-           accept="image/*"
-           className = "form-control"
-           required
-           style = {{ height:'60%' }}
-           name = 'photo'
-           id = 'photo'
-           onChange={(e) => setPhoto(e.target.files[0])}
+            accept="image/*"
+            className={classes.input}
+            id="photo"
+            type="file"
+            name = 'photo'
+            onChange={(e) => setPhoto(e.target.files[0])}
           />
+          <label htmlFor="photo">
+            <Button variant="contained" color="primary" component="span" startIcon={<CloudUploadIcon />}>
+              Upload Recipe Photo
+            </Button>
+          </label>
         </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Details photo</b>
+        <div className={classes.root}>
           <input
-           type="file"
-           accept="image/*"
-           className = "form-control"
-           required
-           style = {{ height:'60%' }}
-           name = 'photo1'
-           id = 'photo1'
-           onChange={(e) => setPhoto1(e.target.files[0])}
+          accept="image/*"
+          className={classes.input}
+          id="photo1"
+          type="file"
+          name = 'photo1'
+          onChange={(e) => setPhoto1(e.target.files[0])}
           />
+          <label htmlFor="photo1">
+            <Button variant="contained" color="primary" component="span" startIcon={<CloudUploadIcon />}>
+              Upload Recipe Details Photo
+            </Button>
+          </label>
         </div>
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <Button startIcon={<SaveIcon />} variant="contained" type="submit">Save Recipe</Button>
         <center style = {{marginTop: '1%', fontSize: 20}} ><Link className = 'adminLinks' to = '/admin'>Go back to admin page</Link></center>
       </form>
     </div>
+    </>
   )
 
   return (

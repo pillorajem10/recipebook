@@ -15,10 +15,12 @@ import {
 }
 from '../types';
 
-const listRecipes = () => async (dispatch) => {
+const listRecipes = ( searchKeyword = '' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_REQUEST});
-    const {data} = await axios.get('/recipe');
+    const { data } = await axios.get(
+    '/recipe?searchKeyword=' + searchKeyword
+);
     dispatch({type: RECIPE_LIST_SUCCESS, payload: data});
   }
   catch(error){

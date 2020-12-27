@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addCategory } from '../redux/actions/categoryActions';
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 
 const CreateCategory = () => {
 
@@ -40,24 +43,26 @@ const CreateCategory = () => {
   );
 
   const createCategoryForm = () => (
+    <>
+    <center className = 'welcomeTitle'>Create new category here</center>
     <div  className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
         <div class="form-group">
-          <b style = {{ fontSize:20 }} >New Category</b>
-          <input
+          <TextField color = 'secondary'
            type = "text"
            onChange={(e) => setName(e.target.value)}
            className = "form-control"
-           placeholder = "Enter the name of the new category"
+           label = "Enter the name of the new category"
            required
            id = 'name'
            name = 'name'
           />
         </div>
-        <button type="submit" class="btn btn-dark">Submit</button>
+        <Button startIcon={<SaveIcon />} variant="contained" type="submit">Save Category</Button>
         <center style = {{marginTop: '1%', fontSize: 20}} ><Link className = 'adminLinks' to = '/admin'>Go back to admin page</Link></center>
       </form>
     </div>
+    </>
   )
 
   return(

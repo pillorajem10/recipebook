@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../redux/actions/userActions';
 import { Link } from 'react-router-dom';
+import TextField  from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Signin = (props) => {
@@ -48,12 +50,14 @@ const Signin = (props) => {
   );
 
   const signInForm = () => (
+    <>
+    <center className = 'welcomeTitle'>Sign In</center>
     <div  className = 'container'>
       <form className = 'form-container' onSubmit = {submitHandler}>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Email address</b>
-          <input type="email"
+        <div class="form-group" style = {{ marginTop:'3%' }}>
+          <TextField color = 'secondary' type="email"
            name = 'email'
+           label = 'Email Address'
            id = 'email'
            className = "form-control"
            placeholder="Enter email"
@@ -61,10 +65,10 @@ const Signin = (props) => {
            required
           />
         </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Password</b>
-          <input type="password"
+        <div class="form-group" style = {{ marginTop:'3%' }}>
+          <TextField color = 'secondary' type="password"
            name = 'password'
+           label = 'Password'
            id = 'password'
            className = "form-control"
            placeholder="Password"
@@ -72,10 +76,11 @@ const Signin = (props) => {
            required
           />
         </div>
-        <button type="submit" class="btn btn-dark">Sign In</button>
+        <Button style = {{marginTop: '5%'}} variant="contained" type="submit">Sign In</Button>
         <div style = {{marginTop: '5%', fontSize:20}}>Don't have an account? <Link style = {{color: 'gray', textDecoration:'none'}} to = '/signup'>Sign Up</Link></div>
       </form>
     </div>
+    </>
   )
 
   return (

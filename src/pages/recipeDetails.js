@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsRecipe, saveRecipeReview } from '../redux/actions/recipeActions';
 import { RECIPE_REVIEWS_ADD_RESET } from '../redux/types';
+import Button from '@material-ui/core/Button';
+import Rating from '@material-ui/lab/Rating';
 
 import { Link } from 'react-router-dom';
 
@@ -9,6 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecipeDetails = (props) => {
   const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(0);
   const recipeDetails = useSelector(state => state.recipeDetails);
   const { user } = useSelector((state) => state.userSignin);
   const {recipe, loading, error} = recipeDetails;
@@ -34,6 +37,7 @@ const RecipeDetails = (props) => {
   dispatch(
     saveRecipeReview(props.match.params.id, {
       name: user.name,
+      rating: rating,
       comment: comment,
       userRole: user.role
     })
@@ -87,7 +91,7 @@ const RecipeDetails = (props) => {
      </div>
      <hr/>
      <center>
-       <h2>Comments</h2>
+       <center className = 'welcomeTitle'>Reviews</center>
        {recipe.reviews && recipe.reviews.length > 0 ? (
          <div>
            {recipe.reviews && recipe.reviews.map((review) => (
@@ -97,17 +101,28 @@ const RecipeDetails = (props) => {
                ) : (
                  <b style = {{ fontSize: '1.2rem' }} >{review.name}</b>
                ) }
+               <div><Rating readOnly value={review.rating}/></div>
                <div style = {{ fontSize: '1.5rem' }} >{review.comment}</div>
              </div>
            ))}
          </div>
        ) : (
          <h3>
-          There are no comments. Write the first one
+          There are no reviews in this recipe. Write the first one
          </h3>
        )}
        <hr/>
-       <h2>Write a comment</h2>
+       <center className = 'welcomeTitle'>Rate this recipe</center>
+       <Rating
+         name="rating"
+         id='rating'
+         value={rating}
+         onChange={(event, newValue) => {
+           setRating(newValue);
+         }}
+       />
+       <hr/>
+       <center className = 'welcomeTitle'>Write a comment here</center>
        {user ? (
          <div  className = 'container'>
            <form className = 'form-container' onSubmit = {submitHandler}>
@@ -124,7 +139,7 @@ const RecipeDetails = (props) => {
                 onChange={(e) => setComment(e.target.value)}
                />
              </div>
-             <button type="submit" class="btn btn-dark">Comment</button>
+             <Button variant="contained" type="submit">Comment</Button>
            </form>
          </div>
        ) : (

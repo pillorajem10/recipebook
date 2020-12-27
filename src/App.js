@@ -25,7 +25,7 @@ import PrivateRoute from './routes/privateRoute';
 import AdminRoute from './routes/adminRoute';
 
 const App = () => {
-
+  
   return (
     <BrowserRouter>
       <Navbar/>

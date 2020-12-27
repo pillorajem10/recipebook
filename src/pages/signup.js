@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../redux/actions/userActions';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Signup = (props) => {
+
+
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -42,56 +46,55 @@ const Signup = (props) => {
   );
 
   const signUpForm = () => (
-    <div className = 'container'>
-      <form onSubmit = {submitHandler} className = 'form-container'>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Name</b>
-          <input id = 'name'
-            onChange={(e) => setName(e.target.value)}
-            name = 'name'
-            type = 'text'
-            className = "form-control"
-            placeholder="Enter Full Name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Email address</b>
-          <input id = 'email'
-            onChange={(e) => setEmail(e.target.value)}
-            name = 'email'
-            type="text"
-            className = "form-control"
-            placeholder="Enter email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Password</b>
-          <input id = 'password'
-            onChange={(e) => setPassword(e.target.value)}
-            name = 'password'
-            type="password"
-            className = "form-control"
-            placeholder="Password"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <b style = {{ fontSize:20 }} >Confirm Password</b>
-          <input id = 'password2'
-            onChange={(e) => setPassword2(e.target.value)}
-            name = 'password2'
-            type="password"
-            className = "form-control"
-            placeholder="Confirm Password"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-dark">Sign Up</button>
-        <div style = {{marginTop: '5%', fontSize:20}}>Have an account? <Link style = {{color: 'gray', textDecoration:'none'}} to = '/'>Sign In</Link></div>
-      </form>
-    </div>
+    <>
+      <center className = 'welcomeTitle'>Sign Up here</center>
+      <div className = 'container'>
+        <form onSubmit = {submitHandler} className = 'form-container'>
+          <div class="form-group" style = {{ marginTop:'3%' }}>
+            <TextField color = 'secondary' id = 'name'
+              label="Full name"
+              onChange={(e) => setName(e.target.value)}
+              name = 'name'
+              type = 'text'
+              className = "form-control"
+              required
+            />
+          </div>
+          <div class="form-group" style = {{ marginTop:'3%' }}>
+            <TextField color = 'secondary' color = 'secondary' id = 'email'
+              label="Email Address"
+              onChange={(e) => setEmail(e.target.value)}
+              name = 'email'
+              type="text"
+              className = "form-control"
+              required
+            />
+          </div>
+          <div class="form-group" style = {{ marginTop:'3%' }}>
+            <TextField color = 'secondary' id = 'password'
+              label="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              name = 'password'
+              type="password"
+              className = "form-control"
+              required
+            />
+          </div>
+          <div class="form-group" style = {{ marginTop:'3%' }}>
+            <TextField color = 'secondary' color = 'secondary' id = 'password2'
+              label="Confirm Password"
+              onChange={(e) => setPassword2(e.target.value)}
+              name = 'password2'
+              type="password"
+              className = "form-control"
+              required
+            />
+          </div>
+          <Button style = {{marginTop: '5%'}} variant="contained" type="submit">Sign Up</Button>
+          <div style = {{marginTop: '5%', fontSize:20}}>Have an account? <Link style = {{color: 'gray', textDecoration:'none'}} to = '/'>Sign In</Link></div>
+        </form>
+      </div>
+    </>
   )
 
   return (

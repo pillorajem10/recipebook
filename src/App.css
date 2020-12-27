@@ -19,7 +19,7 @@ color: white;
 text-align: center;
 padding: 1.8rem 1rem;
 text-decoration: none;
-float: right; 
+float: right;
 }
 
 li img{
@@ -31,10 +31,12 @@ color: gray;
 text-decoration: none;
 }
 
+
 .welcomeTitle{
   font-family: 'Lobster', cursive;
   font-Size: 2.5rem;
   text-align: center;
+  margin-top: 2rem;
 }
 
 
@@ -58,12 +60,15 @@ text-decoration: none;
 
 .container{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  align-items: center;
   text-align: center;
   flex-direction: row;
-  margin-top: 2%;
-  margin-bottom: 2%;
+}
+
+.form-group {
+  margin-top: 3%;
 }
 
 .card{
@@ -107,7 +112,11 @@ text-decoration: none;
 .recipeName{
   font-family: 'Lobster', cursive;
   font-size: 3rem;
-  margin-top: 1%;
+  margin-top: 2rem;
+}
+
+.recipeTitle {
+  font-family: 'Lobster', cursive;
 }
 
 .instructions {
@@ -138,4 +147,11 @@ text-decoration: none;
   color: red;
   font-weight: bold;
   text-decoration: none;
+}
+
+.searchBar {
+  background: white;
+  width: 25rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
 }
