@@ -24,8 +24,11 @@ import CreateCategory from './adminPage/createCategory';
 import PrivateRoute from './routes/privateRoute';
 import AdminRoute from './routes/adminRoute';
 
+//Footer
+import Footer from './components/footer';
+
 const App = () => {
-  
+
   return (
     <BrowserRouter>
       <Navbar/>
@@ -40,6 +43,7 @@ const App = () => {
          <AdminRoute path='/createcategory' component={CreateCategory}/>
          <Route component={Default}/>
       </Switch>
+      <Footer/>
     </BrowserRouter>
   )
 }

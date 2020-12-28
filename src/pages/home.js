@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listRecipes } from '../redux/actions/recipeActions';
-
+import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Home = (props) => {

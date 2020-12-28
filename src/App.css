@@ -58,6 +58,15 @@ text-decoration: none;
 
 /*card*/
 
+.footer {
+  color: white;
+  background: #000000;
+  height: 3rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .container{
   display: flex;
   justify-content: space-around;
