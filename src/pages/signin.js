@@ -60,7 +60,6 @@ const Signin = (props) => {
            label = 'Email Address'
            id = 'email'
            className = "form-control"
-           placeholder="Enter email"
            onChange={handleChange('email')}
            required
           />
@@ -71,7 +70,6 @@ const Signin = (props) => {
            label = 'Password'
            id = 'password'
            className = "form-control"
-           placeholder="Password"
            onChange={handleChange('password')}
            required
           />

@@ -57,37 +57,38 @@ const RecipeDetails = (props) => {
            alt = {recipe.name}
          />
        </div>
-       <ul style={{ maxWidth: "30rem", maxHeight: "30rem"  }} className = 'description card'>
-         Description: <b>{recipe.description}</b>
-       </ul>
-       <ul className = 'instruction-container' style={{ width: "30rem" }} className = 'description card'>
-         Ingredients:
-         <b className = 'instructions'>{recipe.ingredients}</b>
-         <b className = 'instructions'>{recipe.ingredients1}</b>
-         <b className = 'instructions'>{recipe.ingredients2}</b>
-         <b className = 'instructions'>{recipe.ingredients3}</b>
-         <b className = 'instructions'>{recipe.ingredients4}</b>
-         <b className = 'instructions'>{recipe.ingredients5}</b>
-         <b className = 'instructions'>{recipe.ingredients6}</b>
-         <b className = 'instructions'>{recipe.ingredients7}</b>
-         <b className = 'instructions'>{recipe.ingredients8}</b>
-         <b className = 'instructions'>{recipe.ingredients9}</b>
-         <b className = 'instructions'>{recipe.ingredients10}</b>
-       </ul>
-       <ul className = 'instruction-container' style={{  width: "30rem" }} className = 'description card'>
-         Instructions:
-         <b className = 'instructions'>{recipe.instruction}</b>
-         <b className = 'instructions'>{recipe.instruction1}</b>
-         <b className = 'instructions'>{recipe.instruction2}</b>
-         <b className = 'instructions'>{recipe.instruction3}</b>
-         <b className = 'instructions'>{recipe.instruction4}</b>
-         <b className = 'instructions'>{recipe.instruction5}</b>
-         <b className = 'instructions'>{recipe.instruction6}</b>
-         <b className = 'instructions'>{recipe.instruction7}</b>
-         <b className = 'instructions'>{recipe.instruction8}</b>
-         <b className = 'instructions'>{recipe.instruction9}</b>
-         <b className = 'instructions'>{recipe.instruction10}</b>
-       </ul>
+       <div style={{ maxWidth: "30rem", maxHeight: "30rem"  }} className = 'description card'>
+         <div style = {{ fontSize: '1.5rem' }} ><b>Description:</b></div>
+         <div>{recipe.description}</div>
+       </div>
+       <div className = 'instruction-container' style={{ width: "30rem" }} className = 'description card'>
+         <div style = {{ fontSize: '1.5rem' }} ><b>Ingredients:</b></div>
+         <li style = {{ display: recipe.ingredients ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients}</i></li>
+         <li style = {{ display: recipe.ingredients1 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients1}</i></li>
+         <li style = {{ display: recipe.ingredients2 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients2}</i></li>
+         <li style = {{ display: recipe.ingredients3 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients3}</i></li>
+         <li style = {{ display: recipe.ingredients4 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients4}</i></li>
+         <li style = {{ display: recipe.ingredients5 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients5}</i></li>
+         <li style = {{ display: recipe.ingredients6 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients6}</i></li>
+         <li style = {{ display: recipe.ingredients7 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients7}</i></li>
+         <li style = {{ display: recipe.ingredients8 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients8}</i></li>
+         <li style = {{ display: recipe.ingredients9 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients9}</i></li>
+         <li style = {{ display: recipe.ingredients10 ? '' : 'none' }} ><i className = 'instructions'>{recipe.ingredients10}</i></li>
+       </div>
+       <div className = 'instruction-container' style={{ width: "30rem" }} className = 'description card'>
+         <div style = {{ fontSize: '1.5rem' }} ><b>Instructions:</b></div>
+         <li style = {{ display: recipe.instruction ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction}</i></li>
+         <li style = {{ display: recipe.instruction1 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction1}</i></li>
+         <li style = {{ display: recipe.instruction2 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction2}</i></li>
+         <li style = {{ display: recipe.instruction3 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction3}</i></li>
+         <li style = {{ display: recipe.instruction4 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction4}</i></li>
+         <li style = {{ display: recipe.instruction5 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction5}</i></li>
+         <li style = {{ display: recipe.instruction6 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction6}</i></li>
+         <li style = {{ display: recipe.instruction7 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction7}</i></li>
+         <li style = {{ display: recipe.instruction8 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction8}</i></li>
+         <li style = {{ display: recipe.instruction9 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction9}</i></li>
+         <li style = {{ display: recipe.instruction10 ? '' : 'none' }} ><i className = 'instructions'>{recipe.instruction10}</i></li>
+       </div>
      </div>
      <hr/>
      <center>

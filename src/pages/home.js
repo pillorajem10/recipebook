@@ -33,16 +33,26 @@ const Home = (props) => {
       )}
       <div className = 'container'>
         {
-          recipes.map(recipes =>
-            <div className = 'card'>
-              <b className = 'recipeTitle' style = {{fontSize:25}}>{recipes.name}</b>
-              <Link to = {`/recipe/${recipes._id}`}>
-              <img
-                src={`/recipe/photo/${recipes._id}`}
-                style={{ maxHeight: "100%", maxWidth: "100%" }}
-                alt = {recipes.name}
-              /></Link>
-            </div>
+          recipes.length > 0 ? (
+            <>
+              {
+                recipes.map(recipes =>
+                  <div className = 'card'>
+                    <b className = 'recipeTitle' style = {{fontSize:25}}>{recipes.name}</b>
+                    <Link to = {`/recipe/${recipes._id}`}>
+                    <img
+                      src={`/recipe/photo/${recipes._id}`}
+                      style={{ maxHeight: "100%", maxWidth: "100%" }}
+                      alt = {recipes.name}
+                    /></Link>
+                  </div>
+                )
+              }
+            </>
+          ) : (
+            <>
+              <div style = {{fontSize: '4rem'}} >No recipes found</div>
+            </>
           )
         }
       </div>

@@ -42,11 +42,9 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function HideAppBar(props) {
+const HideAppBar = (props) => {
 
   const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeList = useSelector(state => state.recipeList);
-  const { recipes, loading, error } = recipeList;
 
   const dispatch = useDispatch();
 
@@ -62,8 +60,6 @@ export default function HideAppBar(props) {
   const homeReload = () => {
     window.location.href = '/home';
   }
-
-
 
   const { user } = useSelector((state) => state.userSignin);
 
@@ -106,3 +102,5 @@ export default function HideAppBar(props) {
     </React.Fragment>
   );
 }
+
+export default HideAppBar
