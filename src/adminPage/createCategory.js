@@ -51,7 +51,7 @@ const CreateCategory = () => {
           <TextField color = 'secondary'
            type = "text"
            onChange={(e) => setName(e.target.value)}
-           className = "form-control"
+           style = {{width: '100%'}}
            label = "Enter the name of the new category"
            required
            id = 'name'

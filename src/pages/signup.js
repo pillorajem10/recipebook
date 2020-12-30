@@ -50,43 +50,43 @@ const Signup = (props) => {
       <center className = 'welcomeTitle'>Sign Up here</center>
       <div className = 'container'>
         <form onSubmit = {submitHandler} className = 'form-container'>
-          <div class="form-group" style = {{ marginTop:'3%' }}>
+          <div class="form-group" style = {{ marginTop:'1%' }}>
             <TextField color = 'secondary' id = 'name'
               label="Full name"
               onChange={(e) => setName(e.target.value)}
               name = 'name'
               type = 'text'
-              className = "form-control"
+              style = {{width: '100%'}}
               required
             />
           </div>
-          <div class="form-group" style = {{ marginTop:'3%' }}>
+          <div class="form-group" style = {{ marginTop:'1%' }}>
             <TextField color = 'secondary' color = 'secondary' id = 'email'
               label="Email Address"
               onChange={(e) => setEmail(e.target.value)}
               name = 'email'
               type="text"
-              className = "form-control"
+              style = {{width: '100%'}}
               required
             />
           </div>
-          <div class="form-group" style = {{ marginTop:'3%' }}>
+          <div class="form-group" style = {{ marginTop:'1%' }}>
             <TextField color = 'secondary' id = 'password'
               label="Password"
               onChange={(e) => setPassword(e.target.value)}
               name = 'password'
               type="password"
-              className = "form-control"
+              style = {{width: '100%'}}
               required
             />
           </div>
-          <div class="form-group" style = {{ marginTop:'3%' }}>
+          <div class="form-group" style = {{ marginTop:'1%' }}>
             <TextField color = 'secondary' color = 'secondary' id = 'password2'
               label="Confirm Password"
               onChange={(e) => setPassword2(e.target.value)}
               name = 'password2'
               type="password"
-              className = "form-control"
+              style = {{width: '100%'}}
               required
             />
           </div>

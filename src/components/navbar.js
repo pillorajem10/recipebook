@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
 import TextField  from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 //navigation
 import { Link } from 'react-router-dom';
@@ -73,6 +74,20 @@ const HideAppBar = (props) => {
           <li className = 'title'><img src = {logo}/></li>
             {user ? (
               <>
+              <div>
+                <form onSubmit={submitHandler}>
+                  <TextField
+                   placeholder = 'Search for recipes?'
+                   className = 'searchBar'
+                   style = {{ marginTop: '3%' }}
+                   id="outlined-search"
+                   type="search"
+                   variant="outlined"
+                   name="searchKeyword"
+                   onChange={(e) => setSearchKeyword(e.target.value)}
+                  />
+                </form>
+              </div>
                 <li><Link onClick={homeReload} to = '/home'>Home</Link></li>
                 <li><Link to = '/about'>About Us</Link></li>
                 {
@@ -82,12 +97,7 @@ const HideAppBar = (props) => {
                     null
                   )
                 }
-                <li><Link onClick={handleLogout}>Sign Out</Link></li>
-                <li>
-                  <form onSubmit={submitHandler}>
-                    <TextField placeholder = 'Search for recipes?' className = 'searchBar' style = {{ marginTop: '3%' }} id="outlined-search" type="search" variant="outlined" name="searchKeyword" onChange={(e) => setSearchKeyword(e.target.value)} />
-                  </form>
-                </li>
+                <li><Link onClick={handleLogout}><ExitToAppIcon/></Link></li>
               </>
             ) : (
               null

@@ -3,13 +3,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listRecipes } from '../redux/actions/recipeActions';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+const useStyles = makeStyles({
+  root: {
+    maxHeight: "100%",
+    maxWidth: "32rem",
+    marginTop: '2rem'
+  },
+});
 
 const Home = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const recipeList = useSelector(state => state.recipeList);
   const { recipes, loading, error } = recipeList;
+
   const dispatch = useDispatch();
+
+  const classes = useStyles();
 
   const { user } = useSelector((state) => state.userSignin);
 
@@ -19,7 +37,6 @@ const Home = (props) => {
     //
     };
   }, []);
-
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
@@ -32,29 +49,40 @@ const Home = (props) => {
       null
       )}
       <div className = 'container'>
-        {
-          recipes.length > 0 ? (
-            <>
-              {
-                recipes.map(recipes =>
-                  <div className = 'card'>
-                    <b className = 'recipeTitle' style = {{fontSize:25}}>{recipes.name}</b>
-                    <Link to = {`/recipe/${recipes._id}`}>
-                    <img
-                      src={`/recipe/photo/${recipes._id}`}
-                      style={{ maxHeight: "100%", maxWidth: "100%" }}
-                      alt = {recipes.name}
-                    /></Link>
-                  </div>
-                )
-              }
-            </>
-          ) : (
-            <>
-              <div style = {{fontSize: '4rem'}} >No recipes found</div>
-            </>
-          )
-        }
+      { recipes.length > 0 ? (
+        <>
+          {
+           recipes.map( recipes =>
+            <Card className={classes.root}>
+               <CardMedia
+                 component="img"
+                 alt="Contemplative Reptile"
+                 height="500"
+                 image={`/recipe/photo/${recipes._id}`}
+                 title="Contemplative Reptile"
+               />
+               <CardContent>
+                 <Typography gutterBottom variant="h5" component="h2">
+                   {recipes.name}
+                 </Typography>
+                 <Typography variant="body2" color="textSecondary" component="p">
+                   {recipes.description}
+                 </Typography>
+               </CardContent>
+               <CardActions>
+                 <Link to = {`/recipe/${recipes._id}`}>
+                   <Button size="small" color="primary">
+                     Learn More
+                   </Button>
+                 </Link>
+               </CardActions>
+             </Card>
+            )
+           }
+         </>
+      ) : (
+        <div style = {{fontSize: '4rem'}} >No recipes found</div>
+      ) }
       </div>
     </>
   )

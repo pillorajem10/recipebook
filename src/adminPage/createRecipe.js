@@ -131,7 +131,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter the name of the new recipe'
            required
            name = 'name'
@@ -143,7 +143,7 @@ const CreateRecipe = (props) => {
           <textarea
            rows = '5'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            placeholder = "Enter the description of the new recipe"
            required
            name = 'description'
@@ -165,7 +165,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            required
            label = 'Enter Ingredient 1 (required)'
            name = 'ingredients'
@@ -176,7 +176,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            required
            label = 'Enter Ingredient 2 (required)'
            name = 'ingredients1'
@@ -188,7 +188,7 @@ const CreateRecipe = (props) => {
           <TextField color = 'secondary'
            type = "text"
            label = 'Enter Ingredient 3 (required)'
-           className = "form-control"
+           style = {{width: '100%'}}
            required
            name = 'ingredients2'
            id = 'ingredients2'
@@ -198,7 +198,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            name = 'ingredients3'
            id = 'ingredients3'
            label = 'Enter Ingredient 4 (if necessary)'
@@ -208,7 +208,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            name = 'ingredients4'
            label = 'Enter Ingredient 5 (if necessary)'
            id = 'ingredients4'
@@ -218,7 +218,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 6 (if necessary)'
            name = 'ingredients5'
            id = 'ingredients5'
@@ -228,7 +228,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 7 (if necessary)'
            name = 'ingredients6'
            id = 'ingredients6'
@@ -238,7 +238,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 8 (if necessary)'
            name = 'ingredients7'
            id = 'ingredients7'
@@ -248,7 +248,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 9 (if necessary)'
            name = 'ingredients8'
            id = 'ingredients8'
@@ -258,7 +258,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 10 (if necessary)'
            name = 'ingredients9'
            id = 'ingredients9'
@@ -268,7 +268,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Ingredient 11 (if necessary)'
            name = 'ingredients10'
            id = 'ingredients10'
@@ -278,7 +278,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            required
            name = 'instruction'
            label = 'Enter Instruction 1 (required)'
@@ -289,7 +289,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 2 (required)'
            required
            name = 'instruction1'
@@ -300,7 +300,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 3 (required)'
            required
            name = 'instruction2'
@@ -311,7 +311,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            name = 'instruction3'
            label = 'Enter Instruction 4 (if necessary)'
            id = 'instruction3'
@@ -321,7 +321,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 5 (if necessary)'
            name = 'instruction4'
            id = 'instruction4'
@@ -331,7 +331,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 6 (if necessary)'
            name = 'instruction5'
            id = 'instruction5'
@@ -341,7 +341,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 7 (if necessary)'
            name = 'instruction6'
            id = 'instruction6'
@@ -351,7 +351,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 8 (if necessary)'
            name = 'instruction7'
            id = 'instruction7'
@@ -361,7 +361,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 9 (if necessary)'
            name = 'instruction8'
            id = 'instruction8'
@@ -371,7 +371,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 10 (if necessary)'
            name = 'instruction9'
            id = 'instruction9'
@@ -381,7 +381,7 @@ const CreateRecipe = (props) => {
         <div class="form-group">
           <TextField color = 'secondary'
            type = "text"
-           className = "form-control"
+           style = {{width: '100%'}}
            label = 'Enter Instruction 11 (if necessary)'
            name = 'instruction10'
            id = 'instruction10'

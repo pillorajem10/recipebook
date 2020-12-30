@@ -54,22 +54,22 @@ const Signin = (props) => {
     <center className = 'welcomeTitle'>Sign In</center>
     <div  className = 'container'>
       <form className = 'form-container' onSubmit = {submitHandler}>
-        <div class="form-group" style = {{ marginTop:'3%' }}>
+        <div class="form-group" style = {{ marginTop:'2%' }}>
           <TextField color = 'secondary' type="email"
            name = 'email'
            label = 'Email Address'
            id = 'email'
-           className = "form-control"
+           style = {{width: '100%'}}
            onChange={handleChange('email')}
            required
           />
         </div>
-        <div class="form-group" style = {{ marginTop:'3%' }}>
+        <div class="form-group" style = {{ marginTop:'2%' }}>
           <TextField color = 'secondary' type="password"
            name = 'password'
            label = 'Password'
            id = 'password'
-           className = "form-control"
+           style = {{width: '100%'}}
            onChange={handleChange('password')}
            required
           />
