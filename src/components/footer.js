@@ -3,7 +3,7 @@ import { BottomNavigation } from '@material-ui/core';
 
 const Footer = () => {
   return (
-    <footer className = 'footer' >All rights reserved.</footer>
+    <div className = 'footer' >All rights reserved.</div>
   )
 }
 
