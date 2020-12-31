@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listRecipes } from '../redux/actions/recipeActions';
+import { listAllRecipes } from '../redux/actions/recipeActions';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -20,10 +20,10 @@ const useStyles = makeStyles({
   },
 });
 
-const Home = (props) => {
+const AllRecipe = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeList = useSelector(state => state.recipeList);
-  const { recipes, loading, error } = recipeList;
+  const recipeListAll = useSelector(state => state.recipeListAll);
+  const { recipes, loading, error } = recipeListAll;
 
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ const Home = (props) => {
   const { user } = useSelector((state) => state.userSignin);
 
   useEffect(() => {
-    dispatch(listRecipes());
+    dispatch(listAllRecipes());
     return () => {
     //
     };
@@ -43,7 +43,7 @@ const Home = (props) => {
     <>
       {user ? (
          <>
-           <center className = 'welcomeTitle'>New recipes for you {user.name}</center>
+           <center className = 'welcomeTitle'>All recipes</center>
          </>
        ) : (
       null
@@ -84,13 +84,8 @@ const Home = (props) => {
         <div style = {{fontSize: '4rem'}} >No recipes found</div>
       ) }
       </div>
-      <center>
-        <Button style = {{marginTop:'3%'}} variant="contained" color="primary" href="/recipes">
-          View All recipes
-        </Button>
-      </center>
     </>
   )
 }
 
-export default Home;
+export default AllRecipe;

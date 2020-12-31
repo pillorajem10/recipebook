@@ -11,20 +11,36 @@ import {
   RECIPE_ADD_FAIL,
   RECIPE_REVIEWS_ADD_REQUEST,
   RECIPE_REVIEWS_ADD_SUCCESS,
-  RECIPE_REVIEWS_ADD_FAIL
+  RECIPE_REVIEWS_ADD_FAIL,
+  RECIPE_LIST_ALL_REQUEST,
+  RECIPE_LIST_ALL_SUCCESS,
+  RECIPE_LIST_ALL_FAIL
 }
 from '../types';
 
-const listRecipes = ( searchKeyword = '' ) => async (dispatch) => {
+const listRecipes = ( searchKeyword = '', sortBy = 'createdAt', limit = 4, order = 'desc' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_REQUEST});
     const { data } = await axios.get(
-    '/recipe?searchKeyword=' + searchKeyword
+    '/recipe?searchKeyword=' + searchKeyword + '&limit=' + limit + '&sortBy=' + sortBy + '&order=' + order
 );
     dispatch({type: RECIPE_LIST_SUCCESS, payload: data});
   }
   catch(error){
     dispatch({type: RECIPE_LIST_FAIL, payload: error.message})
+  }
+}
+
+const listAllRecipes = ( searchKeyword = '') => async (dispatch) => {
+  try{
+    dispatch({type: RECIPE_LIST_ALL_REQUEST});
+    const { data } = await axios.get(
+    '/recipe?searchKeyword=' + searchKeyword
+);
+    dispatch({type: RECIPE_LIST_ALL_SUCCESS, payload: data});
+  }
+  catch(error){
+    dispatch({type: RECIPE_LIST_ALL_FAIL, payload: error.message})
   }
 }
 
@@ -166,4 +182,4 @@ const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
 
 
 
-export { listRecipes, detailsRecipe, addRecipe, saveRecipeReview }
+export { listRecipes, detailsRecipe, addRecipe, saveRecipeReview, listAllRecipes }

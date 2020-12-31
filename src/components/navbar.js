@@ -8,9 +8,10 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
-import { listRecipes } from '../redux/actions/recipeActions';
+import { listRecipes, listAllRecipes } from '../redux/actions/recipeActions';
 import logo from '../images/recipebook.jpg';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { logout } from '../redux/actions/userActions';
 import TextField  from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -48,17 +49,20 @@ const HideAppBar = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const submitHandler = (e) => {
-   e.preventDefault();
    dispatch(listRecipes(searchKeyword));
+   dispatch(listAllRecipes(searchKeyword));
+   e.preventDefault();
   };
 
   const handleLogout = () => {
     dispatch(logout());
   }
 
-  const homeReload = () => {
+  const homeReload = (e) => {
+    e.preventDefault();
     window.location.href = '/home';
   }
 
@@ -88,7 +92,7 @@ const HideAppBar = (props) => {
                   />
                 </form>
               </div>
-                <li><Link onClick={homeReload} to = '/home'>Home</Link></li>
+                <li><Link onClick = {homeReload} to = '/home'>Home</Link></li>
                 <li><Link to = '/about'>About Us</Link></li>
                 {
                   user && user.role === 1 ? (

@@ -14,6 +14,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Default from './pages/default';
 import RecipeDetails from './pages/recipeDetails';
+import AllRecipe from './pages/allRecipe';
 
 //adminPage
 import AdminPage from './adminPage/adminPage';
@@ -33,8 +34,9 @@ const App = () => {
     <BrowserRouter>
       <Navbar/>
       <Switch>
-         <Route path='/' exact component={Signin}/>
+         <Route path='/' exact={true} component={Signin}/>
          <PrivateRoute path='/home' component={Home}/>
+         <PrivateRoute path='/recipes' component={AllRecipe}/>
          <Route path='/signup' component={Signup}/>
          <PrivateRoute path='/about' component={About}/>
          <PrivateRoute path='/recipe/:id' component={RecipeDetails}/>
