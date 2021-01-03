@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listRecipes } from '../redux/actions/recipeActions';
+import { listRateRecipes } from '../redux/actions/recipeActions';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -23,8 +23,8 @@ const useStyles = makeStyles({
 
 const Home = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeList = useSelector(state => state.recipeList);
-  const { recipes, loading, error } = recipeList;
+  const recipeRate = useSelector(state => state.recipeRate);
+  const { recipes, loading, error } = recipeRate;
 
   const dispatch = useDispatch();
 
@@ -33,7 +33,7 @@ const Home = (props) => {
   const { user } = useSelector((state) => state.userSignin);
 
   useEffect(() => {
-    dispatch(listRecipes());
+    dispatch(listRateRecipes());
     return () => {
     //
     };
@@ -44,7 +44,7 @@ const Home = (props) => {
     <>
       {user ? (
          <>
-           <center className = 'welcomeTitle'>New recipes for you {user.name}</center>
+           <center className = 'welcomeTitle'>Here our most popular recipes</center>
          </>
        ) : (
       null

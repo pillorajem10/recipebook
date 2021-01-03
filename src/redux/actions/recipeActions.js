@@ -47,11 +47,11 @@ const listRateRecipes = ( searchKeyword = '', sortBy = 'rating', limit = 4, orde
   }
 }
 
-const listAllRecipes = ( searchKeyword = '') => async (dispatch) => {
+const listAllRecipes = ( searchKeyword = '', sortBy = 'createdAt', order = 'desc' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_ALL_REQUEST});
     const { data } = await axios.get(
-    '/recipe?searchKeyword=' + searchKeyword
+    '/recipe?searchKeyword=' + searchKeyword + '&sortBy=' + sortBy + '&order=' + order
 );
     dispatch({type: RECIPE_LIST_ALL_SUCCESS, payload: data});
   }
