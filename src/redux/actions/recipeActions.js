@@ -55,7 +55,8 @@ const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
     dispatch({type: RECIPE_SEARCH_REQUEST});
     const { data } = await axios.get(
     '/recipe/search?searchKeyword=' + searchKeyword
-);
+    );
+    console.log('RESULTS', data);
     dispatch({type: RECIPE_SEARCH_SUCCESS, payload: data});
   }
   catch(error){

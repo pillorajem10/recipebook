@@ -23,9 +23,7 @@ const useStyles = makeStyles({
 });
 
 const SearchRecipes = (props) => {
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeSearch = useSelector(state => state.recipeSearch);
-  const { recipes, loading, error } = recipeSearch;
+  const { recipes, loading, error } = useSelector(state => state.recipeSearch);
 
   const dispatch = useDispatch();
 
@@ -41,7 +39,6 @@ const SearchRecipes = (props) => {
   }, []);
 
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
       {user ? (
          <>
@@ -51,11 +48,11 @@ const SearchRecipes = (props) => {
       null
       )}
       <div className = 'container'>
-      { recipes.length > 0 ? (
+      {recipes && recipes.length > 0 ? (
         <>
-          {
+          {recipes &&
            recipes.map( recipes =>
-            <Card data-aos = 'fade-up' className={classes.root}>
+            <Card className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}
