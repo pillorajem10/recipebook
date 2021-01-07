@@ -6,6 +6,8 @@ import './App.css'
 
 //components
 import Navbar from './components/navbar';
+import Footer from './components/footer';
+import SearchRecipes from './components/searchRecipes';
 
 //pages
 import Signup from './pages/signup';
@@ -25,14 +27,12 @@ import CreateCategory from './adminPage/createCategory';
 import PrivateRoute from './routes/privateRoute';
 import AdminRoute from './routes/adminRoute';
 
-//Footer
-import Footer from './components/footer';
-
 const App = () => {
 
   return (
     <BrowserRouter>
       <Navbar/>
+      <SearchRecipes/>
       <Switch>
          <Route path='/' exact={true} component={Signin}/>
          <PrivateRoute path='/home' component={Home}/>

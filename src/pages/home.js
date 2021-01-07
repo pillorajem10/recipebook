@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
 
+
 const useStyles = makeStyles({
   root: {
     maxHeight: "100%",
@@ -54,7 +55,7 @@ const Home = (props) => {
         <>
           {
            recipes.map( recipes =>
-            <Card className={classes.root}>
+            <Card data-aos = 'fade-up' className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}
@@ -70,7 +71,10 @@ const Home = (props) => {
                    {recipes.description}
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
-                   <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
+                   <Rating readOnly value={recipes.finalRating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
+                 </Typography>
+                 <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+                    <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>
                  </Typography>
                </CardContent>
                <CardActions>

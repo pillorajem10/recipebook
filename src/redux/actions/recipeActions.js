@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {
-  RECIPE_LIST_REQUEST,
-  RECIPE_LIST_SUCCESS,
-  RECIPE_LIST_FAIL,
+  //RECIPE_LIST_REQUEST,
+  //RECIPE_LIST_SUCCESS,
+  //RECIPE_LIST_FAIL,
   RECIPE_DETAIL_REQUEST,
   RECIPE_DETAIL_SUCCESS,
   RECIPE_DETAIL_FAIL,
@@ -17,28 +17,31 @@ import {
   RECIPE_LIST_ALL_FAIL,
   RECIPE_LIST_MRATE_REQUEST,
   RECIPE_LIST_MRATE_SUCCESS,
-  RECIPE_LIST_MRATE_FAIL
+  RECIPE_LIST_MRATE_FAIL,
+  RECIPE_SEARCH_REQUEST,
+  RECIPE_SEARCH_SUCCESS,
+  RECIPE_SEARCH_FAIL
 }
 from '../types';
 
-const listRecipes = ( searchKeyword = '', sortBy = 'createdAt', limit = 4, order = 'desc' ) => async (dispatch) => {
+/*const listRecipes = ( sortBy = 'createdAt', limit = 4, order = 'desc' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_REQUEST});
     const { data } = await axios.get(
-    '/recipe?searchKeyword=' + searchKeyword + '&limit=' + limit + '&sortBy=' + sortBy + '&order=' + order
+    '/recipe?limit=' + limit
 );
     dispatch({type: RECIPE_LIST_SUCCESS, payload: data});
   }
   catch(error){
     dispatch({type: RECIPE_LIST_FAIL, payload: error.message})
   }
-}
+}*/
 
-const listRateRecipes = ( searchKeyword = '', sortBy = 'rating', limit = 4, order = 'desc' ) => async (dispatch) => {
+const listRateRecipes = ( sortBy = 'finalRating', limit = 4, order = 'desc' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_MRATE_REQUEST});
     const { data } = await axios.get(
-    '/recipe?searchKeyword=' + searchKeyword + '&limit=' + limit + '&sortBy=' + sortBy + '&order=' + order
+    '/recipe?limit=' + limit + '&sortBy=' + sortBy + '&order=' + order
 );
     dispatch({type: RECIPE_LIST_MRATE_SUCCESS, payload: data});
   }
@@ -47,11 +50,24 @@ const listRateRecipes = ( searchKeyword = '', sortBy = 'rating', limit = 4, orde
   }
 }
 
-const listAllRecipes = ( searchKeyword = '', sortBy = 'createdAt', order = 'desc' ) => async (dispatch) => {
+const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
+  try{
+    dispatch({type: RECIPE_SEARCH_REQUEST});
+    const { data } = await axios.get(
+    '/recipe/search?searchKeyword=' + searchKeyword
+);
+    dispatch({type: RECIPE_SEARCH_SUCCESS, payload: data});
+  }
+  catch(error){
+    dispatch({type: RECIPE_SEARCH_FAIL, payload: error.message})
+  }
+}
+
+const listAllRecipes = ( sortBy = 'createdAt', order = 'desc' ) => async (dispatch) => {
   try{
     dispatch({type: RECIPE_LIST_ALL_REQUEST});
     const { data } = await axios.get(
-    '/recipe?searchKeyword=' + searchKeyword + '&sortBy=' + sortBy + '&order=' + order
+    '/recipe?sortBy=' + sortBy + '&order=' + order
 );
     dispatch({type: RECIPE_LIST_ALL_SUCCESS, payload: data});
   }
@@ -198,4 +214,12 @@ const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
 
 
 
-export { listRecipes, detailsRecipe, addRecipe, saveRecipeReview, listAllRecipes, listRateRecipes }
+export {
+  /*listRecipes,*/
+  detailsRecipe,
+  addRecipe,
+  saveRecipeReview,
+  listAllRecipes,
+  listRateRecipes,
+  listSearchRecipes
+}

@@ -8,7 +8,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
-import { listRecipes, listAllRecipes } from '../redux/actions/recipeActions';
+import { /*listRecipes,*/ listAllRecipes, listSearchRecipes } from '../redux/actions/recipeActions';
 import logo from '../images/recipebook.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -52,8 +52,7 @@ const HideAppBar = (props) => {
   const history = useHistory();
 
   const submitHandler = (e) => {
-   dispatch(listRecipes(searchKeyword));
-   dispatch(listAllRecipes(searchKeyword));
+   dispatch(listSearchRecipes(searchKeyword));
    e.preventDefault();
   };
 

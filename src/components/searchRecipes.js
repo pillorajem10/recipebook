@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listAllRecipes } from '../redux/actions/recipeActions';
+import { listSearchRecipes } from '../redux/actions/recipeActions';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -10,8 +10,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Rating from '@material-ui/lab/Rating';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Rating from '@material-ui/lab/Rating';
+
 
 const useStyles = makeStyles({
   root: {
@@ -21,10 +22,10 @@ const useStyles = makeStyles({
   },
 });
 
-const AllRecipe = (props) => {
+const SearchRecipes = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeListAll = useSelector(state => state.recipeListAll);
-  const { recipes, loading, error } = recipeListAll;
+  const recipeSearch = useSelector(state => state.recipeSearch);
+  const { recipes, loading, error } = recipeSearch;
 
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ const AllRecipe = (props) => {
   const { user } = useSelector((state) => state.userSignin);
 
   useEffect(() => {
-    dispatch(listAllRecipes());
+    dispatch(listSearchRecipes());
     return () => {
     //
     };
@@ -44,7 +45,7 @@ const AllRecipe = (props) => {
     <>
       {user ? (
          <>
-           <center className = 'welcomeTitle'>All recipes</center>
+           <center className = 'welcomeTitle'>Results</center>
          </>
        ) : (
       null
@@ -54,7 +55,7 @@ const AllRecipe = (props) => {
         <>
           {
            recipes.map( recipes =>
-            <Card className={classes.root}>
+            <Card data-aos = 'fade-up' className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}
@@ -70,7 +71,7 @@ const AllRecipe = (props) => {
                    {recipes.description}
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
-                   <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
+                   <Rating readOnly value={recipes.finalRating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
                     <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>
@@ -95,4 +96,4 @@ const AllRecipe = (props) => {
   )
 }
 
-export default AllRecipe;
+export default SearchRecipes;
