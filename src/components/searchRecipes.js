@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listSearchRecipes } from '../redux/actions/recipeActions';
+import { clearSearchRecipes, listSearchRecipes } from '../redux/actions/recipeActions';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -24,7 +24,10 @@ const useStyles = makeStyles({
 
 const SearchRecipes = (props) => {
   const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeSearch = useSelector(state => state.recipeSearch);
+  const recipeSearch = useSelector(state => {
+    console.log('[state] ', state);
+    return state.recipeSearch
+  });
   const { recipes, loading, error } = recipeSearch;
 
   const dispatch = useDispatch();
@@ -34,27 +37,23 @@ const SearchRecipes = (props) => {
   const { user } = useSelector((state) => state.userSignin);
 
   useEffect(() => {
-    dispatch(listSearchRecipes());
     return () => {
+      console.log('[GG]')
+      dispatch(clearSearchRecipes());
     //
     };
   }, []);
 
+  console.log('[SEARCH RECIPE] ', searchKeyword, recipeSearch);
+  if (error) return (<div>{error}</div>);
+  if (loading) return (<CircularProgress color = 'dark' className = 'loading' />);
+  if (recipes.length === 0) return (<div style = {{fontSize: '4rem'}} >No recipes found</div>);
+
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
-      {user ? (
-         <>
-           <center className = 'welcomeTitle'>Results</center>
-         </>
-       ) : (
-      null
-      )}
       <div className = 'container'>
-      { recipes.length > 0 ? (
-        <>
-          {
-           recipes.map( recipes =>
+        <center className = 'welcomeTitle'>Results</center>
+          {recipes.map(recipes =>
             <Card data-aos = 'fade-up' className={classes.root}>
                <CardMedia
                  component="img"
@@ -85,14 +84,9 @@ const SearchRecipes = (props) => {
                  </Link>
                </CardActions>
              </Card>
-            )
-           }
-         </>
-      ) : (
-        <div style = {{fontSize: '4rem'}} >No recipes found</div>
-      ) }
+           )}
       </div>
-    </>
+      </>
   )
 }
 

@@ -20,7 +20,8 @@ import {
   RECIPE_LIST_MRATE_FAIL,
   RECIPE_SEARCH_REQUEST,
   RECIPE_SEARCH_SUCCESS,
-  RECIPE_SEARCH_FAIL
+  RECIPE_SEARCH_FAIL,
+  RECIPE_SEARCH_CLEAR,
 }
 from '../types';
 
@@ -49,6 +50,12 @@ const listRateRecipes = ( sortBy = 'finalRating', limit = 4, order = 'desc' ) =>
     dispatch({type: RECIPE_LIST_MRATE_FAIL, payload: error.message})
   }
 }
+
+const clearSearchRecipes = () => (dispatch) => {
+  dispatch({
+    type: RECIPE_SEARCH_CLEAR,
+  });
+};
 
 const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
   try{
@@ -221,5 +228,6 @@ export {
   saveRecipeReview,
   listAllRecipes,
   listRateRecipes,
-  listSearchRecipes
+  listSearchRecipes,
+  clearSearchRecipes,
 }

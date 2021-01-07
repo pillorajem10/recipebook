@@ -20,7 +20,8 @@ import {
   RECIPE_LIST_MRATE_FAIL,
   RECIPE_SEARCH_REQUEST,
   RECIPE_SEARCH_SUCCESS,
-  RECIPE_SEARCH_FAIL
+  RECIPE_SEARCH_FAIL,
+  RECIPE_SEARCH_CLEAR
 }
 from '../types';
 
@@ -43,6 +44,8 @@ const recipeSearchReducer = (state = {recipes: [] }, action) => {
       return {loading: true};
     case RECIPE_SEARCH_SUCCESS:
       return {loading: false, recipes: action.payload};
+    case RECIPE_SEARCH_CLEAR:
+      return {loading: false, recipes: []};
     case RECIPE_SEARCH_FAIL:
       return {loading: false, error: action.payload};
     default:
