@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listRateRecipes } from '../redux/actions/recipeActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -13,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
 
-
 const useStyles = makeStyles({
   root: {
     maxHeight: "100%",
@@ -23,20 +24,19 @@ const useStyles = makeStyles({
 });
 
 const Home = (props) => {
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeRate = useSelector(state => state.recipeRate);
-  const { recipes, loading, error } = recipeRate;
-
   const dispatch = useDispatch();
-
   const classes = useStyles();
-
-  const { user } = useSelector((state) => state.userSignin);
+  const { recipes, loading, error } = useSelector(state => state.rbook.recipe);
+  const { user } = useSelector((state) => {
+    console.log('[HOME] ', state);
+    return state.rbook.user
+  });
 
   useEffect(() => {
-    dispatch(listRateRecipes());
+    dispatch(rbook.recipe.listRateRecipes());
     return () => {
-    //
+      console.log('[GG HOME]');
+      dispatch(rbook.recipe.setSearchKeyword(''));
     };
   }, []);
 
@@ -51,7 +51,7 @@ const Home = (props) => {
       null
       )}
       <div className = 'container'>
-      { recipes.length > 0 ? (
+      { recipes && recipes.length > 0 ? (
         <>
           {
            recipes.map( recipes =>

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const AdminPage = () => {
 
-  const { user } = useSelector((state) => state.userSignin);
+  const { user } = useSelector((state) => state.rbook.user);
 
   return (
     <div style = {{ fontSize: 25 }}>

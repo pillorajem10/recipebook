@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { login } from '../redux/actions/userActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Visibility from '@material-ui/icons/Visibility';
@@ -31,17 +33,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Signin = (props) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [values, setValues] = useState({
       email: "",
       password: "",
       showPassword: false,
   });
-
-  const { loading, user, error } = useSelector(state => state.userSignin);
-  const dispatch = useDispatch();
+  const { loading, user, error } = useSelector(state => state.rbook.user);
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/home';
-
   const { email, password } = values;
 
   useEffect (() => {
@@ -54,21 +54,21 @@ const Signin = (props) => {
   },[user])
 
   const handleChange = name => event => {
-      setValues({ ...values, error: false, [name]: event.target.value });
+    setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   const handleClickShowPassword = () => {
-  setValues({ ...values, showPassword: !values.showPassword });
-};
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
 
-const handleMouseDownPassword = (event) => {
-  event.preventDefault();
-};
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(login(email, password))
+    dispatch(rbook.user.login(email, password))
   }
 
   const showError = () => (
@@ -95,7 +95,7 @@ const handleMouseDownPassword = (event) => {
             onChange={handleChange('email')}
           />
         </FormControl>
-        <FormControl className={(classes.margin, classes.textField)}> 
+        <FormControl className={(classes.margin, classes.textField)}>
           <InputLabel color = 'secondary' >Password</InputLabel>
           <Input
             color = 'secondary'

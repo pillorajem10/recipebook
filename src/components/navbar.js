@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { rbook } from '../redux/combineActions';
+
+//navigation
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,20 +16,12 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
-import { /*listRecipes,*/ listAllRecipes, listSearchRecipes } from '../redux/actions/recipeActions';
-import logo from '../images/recipebook.jpg';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { logout } from '../redux/actions/userActions';
 import TextField  from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import logo from '../images/recipebook.jpg';
 
-//navigation
-import { Link } from 'react-router-dom';
-
-
-function HideOnScroll(props) {
+const HideOnScroll = (props) =>{
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
@@ -45,27 +45,27 @@ HideOnScroll.propTypes = {
 };
 
 const HideAppBar = (props) => {
-
-  const [searchKeyword, setSearchKeyword] = useState('');
-
   const dispatch = useDispatch();
   const history = useHistory();
+  const { user } = useSelector((state) => state.rbook.user);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   const submitHandler = (e) => {
-   dispatch(listSearchRecipes(searchKeyword));
-   e.preventDefault();
+    e.preventDefault();
+    if (searchKeyword !== '') {
+      dispatch(rbook.recipe.listSearchRecipes(searchKeyword))
+      .then(() => setSearchKeyword(''));
+    }
   };
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(rbook.user.logout());
   }
 
   const homeReload = (e) => {
     e.preventDefault();
-    window.location.href = '/home';
+    history.push('/home');
   }
-
-  const { user } = useSelector((state) => state.userSignin);
 
   return (
     <React.Fragment>
@@ -87,6 +87,7 @@ const HideAppBar = (props) => {
                    type="search"
                    variant="outlined"
                    name="searchKeyword"
+                   value={searchKeyword}
                    onChange={(e) => setSearchKeyword(e.target.value)}
                   />
                 </form>

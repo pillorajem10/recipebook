@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { listCategories } from '../redux/actions/categoryActions';
-import { addRecipe } from '../redux/actions/recipeActions'
+
+import { rbook } from '../redux/combineActions';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -54,8 +55,8 @@ const CreateRecipe = (props) => {
   const [photo, setPhoto] = useState('');
   const [photo1, setPhoto1] = useState('');
 
-  const { loading, recipe, error, success } = useSelector(state => state.addRecipe);
-  const { categories } = useSelector(state => state.listCategories);
+  const { loading, recipe, error, success } = useSelector(state => state.rbook.recipe);
+  const { categories } = useSelector(state => state.rbook.category);
 
   const dispatch = useDispatch();
 
@@ -69,7 +70,7 @@ const CreateRecipe = (props) => {
   }, [recipe]);
 
   useEffect(() => {
-    dispatch(listCategories());
+    dispatch(rbook.category.listCategories());
     return () => {
     //
     };
@@ -77,7 +78,7 @@ const CreateRecipe = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(addRecipe(
+    dispatch(rbook.recipe.addRecipe(
       name,
       description,
       category,

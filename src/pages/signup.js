@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { register } from '../redux/actions/userActions';
+
+import { rbook } from '../redux/combineActions';
+
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import Visibility from '@material-ui/icons/Visibility';
@@ -32,18 +34,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Signup = (props) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [values, setValues] = useState({
-      name: '',
-      email: "",
-      password: "",
-      password2: '',
-      showPassword: false,
-      showPassword2: false
+    name: '',
+    email: "",
+    password: "",
+    password2: '',
+    showPassword: false,
+    showPassword2: false
   });
-  const { loading, user, error, success } = useSelector(state => state.userRegister);
-  const dispatch = useDispatch();
-
+  const { loading, user, error, success } = useSelector(state => state.rbook.user);
   const { name, email, password, password2 } = values;
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const Signup = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(register(name, email, password, password2));
+    dispatch(rbook.user.register(name, email, password, password2));
   }
 
   const showError = () => (

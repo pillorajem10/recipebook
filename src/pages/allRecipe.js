@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listAllRecipes } from '../redux/actions/recipeActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -22,20 +24,15 @@ const useStyles = makeStyles({
 });
 
 const AllRecipe = (props) => {
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeListAll = useSelector(state => state.recipeListAll);
-  const { recipes, loading, error } = recipeListAll;
-
   const dispatch = useDispatch();
-
+  const { user } = useSelector((state) => state.rbook.user);
+  const { recipes, loading, error } = useSelector(state => state.rbook.recipe);
   const classes = useStyles();
 
-  const { user } = useSelector((state) => state.userSignin);
-
   useEffect(() => {
-    dispatch(listAllRecipes());
+    dispatch(rbook.recipe.listAllRecipes());
     return () => {
-    //
+      dispatch(rbook.recipe.setSearchKeyword(''));
     };
   }, []);
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearSearchRecipes, listSearchRecipes } from '../redux/actions/recipeActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -13,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
 
-
 const useStyles = makeStyles({
   root: {
     maxHeight: "100%",
@@ -23,37 +24,28 @@ const useStyles = makeStyles({
 });
 
 const SearchRecipes = (props) => {
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const recipeSearch = useSelector(state => {
-    console.log('[state] ', state);
-    return state.recipeSearch
-  });
-  const { recipes, loading, error } = recipeSearch;
-
   const dispatch = useDispatch();
-
   const classes = useStyles();
-
-  const { user } = useSelector((state) => state.userSignin);
+  const { keyword, results, loading, error } = useSelector(state => state.rbook.recipe);
+  const { user } = useSelector((state) => state.rbook.user);
 
   useEffect(() => {
     return () => {
       console.log('[GG]')
-      dispatch(clearSearchRecipes());
-    //
     };
   }, []);
 
-  console.log('[SEARCH RECIPE] ', searchKeyword, recipeSearch);
+  console.log('[SEARCH RECIPE] ', keyword);
+  if (!results) return null;
   if (error) return (<div>{error}</div>);
   if (loading) return (<CircularProgress color = 'dark' className = 'loading' />);
-  if (recipes.length === 0) return (<div style = {{fontSize: '4rem'}} >No recipes found</div>);
+  if (results && results.length === 0) return (<div style = {{fontSize: '4rem'}}>No recipes found</div>);
 
   return (
     <>
       <div className = 'container'>
         <center className = 'welcomeTitle'>Results</center>
-          {recipes.map(recipes =>
+          {results.map(recipes =>
             <Card data-aos = 'fade-up' className={classes.root}>
                <CardMedia
                  component="img"

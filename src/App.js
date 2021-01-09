@@ -1,5 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Cookie from 'js-cookie';
+/*
+  const user = localStorage.getItem('jwt') && Cookie.getJSON('user') || null;
+*/
 
 //styling
 import './App.css'
@@ -28,7 +32,6 @@ import PrivateRoute from './routes/privateRoute';
 import AdminRoute from './routes/adminRoute';
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <Navbar/>
