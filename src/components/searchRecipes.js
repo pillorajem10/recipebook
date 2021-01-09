@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listSearchRecipes } from '../redux/actions/recipeActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
@@ -13,7 +15,6 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Rating from '@material-ui/lab/Rating';
 
-
 const useStyles = makeStyles({
   root: {
     maxHeight: "100%",
@@ -23,36 +24,22 @@ const useStyles = makeStyles({
 });
 
 const SearchRecipes = (props) => {
-  const { recipes, loading, error } = useSelector(state => state.recipeSearch);
-
   const dispatch = useDispatch();
-
   const classes = useStyles();
+  const { keyword, results, loading, error } = useSelector(state => state.rbook.recipe);
+  const { user } = useSelector((state) => state.rbook.user);
 
-  const { user } = useSelector((state) => state.userSignin);
-
-  useEffect(() => {
-    dispatch(listSearchRecipes());
-    return () => {
-    //
-    };
-  }, []);
+  if (!results) return null;
+  if (error) return (<div>{error}</div>);
+  if (loading) return (<CircularProgress color = 'dark' className = 'loading' />);
+  if (results && results.length === 0) return (<div style = {{fontSize: '4rem'}}>No recipes found</div>);
 
   return (
     <>
-      {user ? (
-         <>
-           <center className = 'welcomeTitle'>Results</center>
-         </>
-       ) : (
-      null
-      )}
       <div className = 'container'>
-      {recipes && recipes.length > 0 ? (
-        <>
-          {recipes &&
-           recipes.map( recipes =>
-            <Card className={classes.root}>
+        <center className = 'welcomeTitle'>Results</center>
+          {results.map(recipes =>
+            <Card data-aos = 'fade-up' className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}
@@ -82,14 +69,9 @@ const SearchRecipes = (props) => {
                  </Link>
                </CardActions>
              </Card>
-            )
-           }
-         </>
-      ) : (
-        <div style = {{fontSize: '4rem'}} >No recipes found</div>
-      ) }
+           )}
       </div>
-    </>
+      </>
   )
 }
 

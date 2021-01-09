@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { rbook } from '../redux/combineActions';
 
 const AdminPage = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.rbook.user);
 
-  const { user } = useSelector((state) => state.userSignin);
+  useEffect(() => {
+    return () => {
+      dispatch(rbook.recipe.setSearchKeyword(''));
+    }
+  });
 
   return (
     <div style = {{ fontSize: 25 }}>

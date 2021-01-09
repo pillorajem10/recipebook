@@ -1,83 +1,74 @@
 import axios from 'axios';
-import {
-  //RECIPE_LIST_REQUEST,
-  //RECIPE_LIST_SUCCESS,
-  //RECIPE_LIST_FAIL,
-  RECIPE_DETAIL_REQUEST,
-  RECIPE_DETAIL_SUCCESS,
-  RECIPE_DETAIL_FAIL,
-  RECIPE_ADD_REQUEST,
-  RECIPE_ADD_SUCCESS,
-  RECIPE_ADD_FAIL,
-  RECIPE_REVIEWS_ADD_REQUEST,
-  RECIPE_REVIEWS_ADD_SUCCESS,
-  RECIPE_REVIEWS_ADD_FAIL,
-  RECIPE_LIST_ALL_REQUEST,
-  RECIPE_LIST_ALL_SUCCESS,
-  RECIPE_LIST_ALL_FAIL,
-  RECIPE_LIST_MRATE_REQUEST,
-  RECIPE_LIST_MRATE_SUCCESS,
-  RECIPE_LIST_MRATE_FAIL,
-  RECIPE_SEARCH_REQUEST,
-  RECIPE_SEARCH_SUCCESS,
-  RECIPE_SEARCH_FAIL
-}
-from '../types';
+import * as types from '../types';
 
 /*const listRecipes = ( sortBy = 'createdAt', limit = 4, order = 'desc' ) => async (dispatch) => {
   try{
-    dispatch({type: RECIPE_LIST_REQUEST});
+    dispatch({type: types.RECIPE_LIST_REQUEST});
     const { data } = await axios.get(
     '/recipe?limit=' + limit
 );
-    dispatch({type: RECIPE_LIST_SUCCESS, payload: data});
+    dispatch({type: types.RECIPE_LIST_SUCCESS, payload: data});
   }
   catch(error){
-    dispatch({type: RECIPE_LIST_FAIL, payload: error.message})
+    dispatch({type: types.RECIPE_LIST_FAIL, payload: error.message})
   }
 }*/
 
-const listRateRecipes = ( sortBy = 'finalRating', limit = 4, order = 'desc' ) => async (dispatch) => {
+export const listRateRecipes = ( sortBy = 'finalRating', limit = 4, order = 'desc' ) => async (dispatch) => {
   try{
-    dispatch({type: RECIPE_LIST_MRATE_REQUEST});
+    dispatch({type: types.RECIPE_LIST_MRATE_REQUEST});
     const { data } = await axios.get(
     '/recipe?limit=' + limit + '&sortBy=' + sortBy + '&order=' + order
 );
-    dispatch({type: RECIPE_LIST_MRATE_SUCCESS, payload: data});
+    dispatch({type: types.RECIPE_LIST_MRATE_SUCCESS, payload: data});
   }
   catch(error){
-    dispatch({type: RECIPE_LIST_MRATE_FAIL, payload: error.message})
+    dispatch({type: types.RECIPE_LIST_MRATE_FAIL, payload: error.message})
   }
 }
 
-const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
-  try{
-    dispatch({type: RECIPE_SEARCH_REQUEST});
-    const { data } = await axios.get(
-    '/recipe/search?searchKeyword=' + searchKeyword
-    );
-    console.log('RESULTS', data);
-    dispatch({type: RECIPE_SEARCH_SUCCESS, payload: data});
+export const setSearchKeyword = (payload) => async (dispatch) => {
+  dispatch({
+    type: types.SET_RECIPE_SEARCH_KEYWORD,
+    payload,
+  });
+};
+
+export const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
+  try {
+    dispatch({ type: types.RECIPE_SEARCH_REQUEST });
+    dispatch({
+      type: types.SET_RECIPE_SEARCH_KEYWORD,
+      payload: searchKeyword,
+    });
+    const res = await axios.get(`/recipe/search?searchKeyword=${searchKeyword}`);
+    dispatch({
+      type: types.RECIPE_SEARCH_SUCCESS,
+      payload: res.data,
+    });
   }
   catch(error){
-    dispatch({type: RECIPE_SEARCH_FAIL, payload: error.message})
+    dispatch({
+      type: types.RECIPE_SEARCH_FAIL,
+      payload: error.message
+    });
   }
 }
 
-const listAllRecipes = ( sortBy = 'createdAt', order = 'desc' ) => async (dispatch) => {
+export const listAllRecipes = ( sortBy = 'createdAt', order = 'desc' ) => async (dispatch) => {
   try{
-    dispatch({type: RECIPE_LIST_ALL_REQUEST});
+    dispatch({type: types.RECIPE_LIST_ALL_REQUEST});
     const { data } = await axios.get(
     '/recipe?sortBy=' + sortBy + '&order=' + order
 );
-    dispatch({type: RECIPE_LIST_ALL_SUCCESS, payload: data});
+    dispatch({type: types.RECIPE_LIST_ALL_SUCCESS, payload: data});
   }
   catch(error){
-    dispatch({type: RECIPE_LIST_ALL_FAIL, payload: error.message})
+    dispatch({type: types.RECIPE_LIST_ALL_FAIL, payload: error.message})
   }
 }
 
-const addRecipe = (
+export const addRecipe = (
   name,
   description,
   category,
@@ -107,7 +98,7 @@ const addRecipe = (
   photo1
 ) => async (dispatch, getState) => {
   try {
-    dispatch({ type: RECIPE_ADD_REQUEST, payload: {
+    dispatch({ type: types.RECIPE_ADD_REQUEST, payload: {
       name,
       description,
       category,
@@ -171,32 +162,32 @@ const addRecipe = (
         'Content-Type': 'multipart/form-data',
       },
     });
-    dispatch({ type: RECIPE_ADD_SUCCESS, payload: data });
+    dispatch({ type: types.RECIPE_ADD_SUCCESS, payload: data });
   } catch (error) {
     console.log(error)
-    dispatch({type: RECIPE_ADD_FAIL, payload: error.response.data.error });
+    dispatch({type: types.RECIPE_ADD_FAIL, payload: error.response.data.error });
   }
 }
 
-const detailsRecipe = (recipeById) => async (dispatch) => {
+export const detailsRecipe = (recipeById) => async (dispatch) => {
   try {
-    dispatch({type: RECIPE_DETAIL_REQUEST, payload: recipeById});
+    dispatch({type: types.RECIPE_DETAIL_REQUEST, payload: recipeById});
     const {data} = await axios.get('/recipe/get/' + recipeById);
-    dispatch({type: RECIPE_DETAIL_SUCCESS, payload: data});
+    dispatch({type: types.RECIPE_DETAIL_SUCCESS, payload: data});
   }
   catch(error){
-    dispatch({type: RECIPE_DETAIL_FAIL, payload: error.message});
+    dispatch({type: types.RECIPE_DETAIL_FAIL, payload: error.message});
   }
 }
 
-const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
+export const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
   try {
     const {
       userSignin: {
         user: { token },
       },
     } = getState();
-    dispatch({ type: RECIPE_REVIEWS_ADD_REQUEST, payload: review });
+    dispatch({ type: types.RECIPE_REVIEWS_ADD_REQUEST, payload: review });
     const { data } = await axios.post(
       `/recipe/reviews/${recipeId}`,
       review,
@@ -206,21 +197,9 @@ const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
         },
       }
     );
-    dispatch({ type: RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
+    dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
   } catch (error) {
     // report error
-    dispatch({ type: RECIPE_REVIEWS_ADD_FAIL, payload: error.message });
+    dispatch({ type: types.RECIPE_REVIEWS_ADD_FAIL, payload: error.message });
   }
 };
-
-
-
-export {
-  /*listRecipes,*/
-  detailsRecipe,
-  addRecipe,
-  saveRecipeReview,
-  listAllRecipes,
-  listRateRecipes,
-  listSearchRecipes
-}

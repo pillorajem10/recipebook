@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { listCategories } from '../redux/actions/categoryActions';
-import { addRecipe } from '../redux/actions/recipeActions'
+
+import { rbook } from '../redux/combineActions';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -54,8 +55,8 @@ const CreateRecipe = (props) => {
   const [photo, setPhoto] = useState('');
   const [photo1, setPhoto1] = useState('');
 
-  const { loading, recipe, error, success } = useSelector(state => state.addRecipe);
-  const { categories } = useSelector(state => state.listCategories);
+  const { loading, recipe, error, success } = useSelector(state => state.rbook.recipe);
+  const { categories } = useSelector(state => state.rbook.category);
 
   const dispatch = useDispatch();
 
@@ -69,7 +70,7 @@ const CreateRecipe = (props) => {
   }, [recipe]);
 
   useEffect(() => {
-    dispatch(listCategories());
+    dispatch(rbook.category.listCategories());
     return () => {
     //
     };
@@ -77,7 +78,7 @@ const CreateRecipe = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(addRecipe(
+    dispatch(rbook.recipe.addRecipe(
       name,
       description,
       category,
@@ -128,7 +129,7 @@ const CreateRecipe = (props) => {
     <center className = 'welcomeTitle'>Create new recipe here</center>
     <div className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -139,7 +140,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <textarea
            rows = '5'
            type = "text"
@@ -151,8 +152,8 @@ const CreateRecipe = (props) => {
            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div class="form-group">
-          <select class="form-control" id="exampleFormControlSelect1" name = 'category' id = 'category' onChange={(e) => setCategory(e.target.value)}>
+        <div className="form-group">
+          <select className="form-control" id="exampleFormControlSelect1" name = 'category' id = 'category' onChange={(e) => setCategory(e.target.value)}>
             <option>Select category</option>
             {categories &&
              categories.map((c, i) => (
@@ -162,7 +163,7 @@ const CreateRecipe = (props) => {
             ))}
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -173,7 +174,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -184,7 +185,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients1(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            label = 'Enter Ingredient 3 (required)'
@@ -195,7 +196,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients2(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -205,7 +206,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients3(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -215,7 +216,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients4(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -225,7 +226,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients5(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -235,7 +236,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients6(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -245,7 +246,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients7(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -255,7 +256,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients8(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -265,7 +266,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients9(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -275,7 +276,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setIngredients10(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -286,7 +287,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -297,7 +298,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction1(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -308,7 +309,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction2(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -318,7 +319,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction3(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -328,7 +329,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction4(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -338,7 +339,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction5(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -348,7 +349,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction6(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -358,7 +359,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction7(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -368,7 +369,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction8(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}
@@ -378,7 +379,7 @@ const CreateRecipe = (props) => {
            onChange={(e) => setInstruction9(e.target.value)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            style = {{width: '100%'}}

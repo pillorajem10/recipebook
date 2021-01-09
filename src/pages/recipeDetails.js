@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { detailsRecipe, saveRecipeReview } from '../redux/actions/recipeActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { RECIPE_REVIEWS_ADD_RESET } from '../redux/types';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
@@ -10,40 +12,38 @@ import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecipeDetails = (props) => {
+  const dispatch = useDispatch();
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
-  const recipeDetails = useSelector(state => state.recipeDetails);
-  const { user } = useSelector((state) => state.userSignin);
-  const {recipe, loading, error} = recipeDetails;
-  const recipeReviewSave = useSelector((state) => state.addReview);
-  const { success: recipeSaveSuccess } = recipeReviewSave;
-  const dispatch = useDispatch();
+  const { recipe, loading, error, success } = useSelector(state => state.rbook.recipe);
+  const { user } = useSelector((state) => state.rbook.user);
 
   useEffect(() => {
-    if (recipeSaveSuccess) {
+    if (success) {
       alert('Comment successfully added.');
       setComment('');
       dispatch({ type: RECIPE_REVIEWS_ADD_RESET });
     }
-    dispatch(detailsRecipe(props.match.params.id));
+    dispatch(rbook.recipe.detailsRecipe(props.match.params.id));
     return () => {
-    //
+      dispatch(rbook.recipe.setSearchKeyword(''));
     };
-  }, [recipeSaveSuccess]);
+  }, [success]);
 
   const submitHandler = (e) => {
-  e.preventDefault();
-  // dispatch actions
-  dispatch(
-    saveRecipeReview(props.match.params.id, {
-      name: user.name,
-      rating: rating,
-      comment: comment,
-      userRole: user.role
-    })
-  );
-};
+    e.preventDefault();
+    // dispatch actions
+    dispatch(
+      rbook.recipe.saveRecipeReview(props.match.params.id, {
+        name: user.name,
+        rating: rating,
+        comment: comment,
+        userRole: user.role
+      })
+    );
+  };
 
+  if (!recipe) return null;
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
@@ -127,7 +127,7 @@ const RecipeDetails = (props) => {
        {user ? (
          <div  className = 'container'>
            <form className = 'form-container' onSubmit = {submitHandler}>
-             <div class="form-group">
+             <div className="form-group">
                <textarea
                 rows = '5'
                 type = "text"

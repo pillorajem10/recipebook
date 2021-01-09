@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addCategory } from '../redux/actions/categoryActions';
+
+import { rbook } from '../redux/combineActions';
+
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
@@ -8,9 +10,8 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 
 const CreateCategory = () => {
-
   const [name, setName] = useState('');
-  const { loading, category, error, success } = useSelector(state => state.addCategory);
+  const { loading, category, error, success } = useSelector(state => state.rbook.category);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const CreateCategory = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(addCategory(name));
+    dispatch(rbook.category.addCategory(name));
   }
 
   const showError = () => (
@@ -47,7 +48,7 @@ const CreateCategory = () => {
     <center className = 'welcomeTitle'>Create new category here</center>
     <div  className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            onChange={(e) => setName(e.target.value)}
