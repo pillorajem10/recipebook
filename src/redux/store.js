@@ -1,16 +1,8 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
-import { recipeListReducer, recipeDetailsReducer, recipeAddReducer, recipeAddReviewsReducer, recipeListAllReducer, recipeListRateReducer, recipeSearchReducer } from './reducers/recipeReducers';
-import { userRegisterReducer, userLoginReducer } from './reducers/userReducers';
-import { categoryAddReducer, categoryListReducer } from './reducers/categoryReducers'
-import Cookie from 'js-cookie';
+import reducers from './combineReducers';
 
-const user = localStorage.getItem('jwt') && Cookie.getJSON('user') || null;
-
-const initialState = {
-  userSignin: { user },
-};
-
+/*
 const reducer = combineReducers({
   recipeList: recipeListReducer,
   recipeRate: recipeListRateReducer,
@@ -24,9 +16,16 @@ const reducer = combineReducers({
   addRecipe: recipeAddReducer,
   addReview: recipeAddReviewsReducer,
 });
+*/
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware =
+  process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION__
+    ? compose(
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+      )
+    : compose(applyMiddleware(thunk));
 
-const store = createStore(reducer, initialState, composeEnhancer(applyMiddleware(thunk)));
+const store = createStore(reducers, {}, middleware);
 
 export default store;
