@@ -7,14 +7,13 @@ const About = (props) => {
 
   useEffect(() => {
     return () => {
-      console.log('[GG ABOUT]');
       dispatch(rbook.recipe.setSearchKeyword(''));
     };
   }, []);
 
   return (
-    <div>
-      about
+    <div style={{ marginTop: 20 }}>
+      <h1>A B O V T</h1>
     </div>
   )
 }

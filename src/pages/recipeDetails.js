@@ -15,7 +15,7 @@ const RecipeDetails = (props) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
-  const {recipe, loading, error, success } = useSelector(state => state.rbook.recipe);
+  const { recipe, loading, error, success } = useSelector(state => state.rbook.recipe);
   const { user } = useSelector((state) => state.rbook.user);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ const RecipeDetails = (props) => {
     );
   };
 
+  if (!recipe) return null;
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
@@ -126,7 +127,7 @@ const RecipeDetails = (props) => {
        {user ? (
          <div  className = 'container'>
            <form className = 'form-container' onSubmit = {submitHandler}>
-             <div class="form-group">
+             <div className="form-group">
                <textarea
                 rows = '5'
                 type = "text"

@@ -1,9 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Cookie from 'js-cookie';
-/*
-  const user = localStorage.getItem('jwt') && Cookie.getJSON('user') || null;
-*/
 
 //styling
 import './App.css'
@@ -30,6 +27,14 @@ import CreateCategory from './adminPage/createCategory';
 //routing
 import PrivateRoute from './routes/privateRoute';
 import AdminRoute from './routes/adminRoute';
+
+import store from './redux/store';
+import { rbook } from './redux/combineActions';
+
+const user = JSON.parse(localStorage.getItem('jwt')) ?? Cookie.getJSON('user');
+if (user) {
+  store.dispatch(rbook.user.setUser(user));
+}
 
 const App = () => {
   return (

@@ -29,13 +29,6 @@ const SearchRecipes = (props) => {
   const { keyword, results, loading, error } = useSelector(state => state.rbook.recipe);
   const { user } = useSelector((state) => state.rbook.user);
 
-  useEffect(() => {
-    return () => {
-      console.log('[GG]')
-    };
-  }, []);
-
-  console.log('[SEARCH RECIPE] ', keyword);
   if (!results) return null;
   if (error) return (<div>{error}</div>);
   if (loading) return (<CircularProgress color = 'dark' className = 'loading' />);

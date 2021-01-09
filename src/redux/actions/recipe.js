@@ -42,7 +42,6 @@ export const listSearchRecipes = ( searchKeyword = '' ) => async (dispatch) => {
       payload: searchKeyword,
     });
     const res = await axios.get(`/recipe/search?searchKeyword=${searchKeyword}`);
-    console.log('[listSearchRecipes] ', res);
     dispatch({
       type: types.RECIPE_SEARCH_SUCCESS,
       payload: res.data,

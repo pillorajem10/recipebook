@@ -66,7 +66,7 @@ const HideAppBar = (props) => {
     e.preventDefault();
     history.push('/home');
   }
-
+  
   return (
     <React.Fragment>
       <CssBaseline />

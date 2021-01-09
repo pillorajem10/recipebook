@@ -2,6 +2,13 @@ import axios from 'axios';
 import * as types from '../types';
 import Cookie from 'js-cookie';
 
+export const setUser = (payload) => (dispatch) => {
+  dispatch({
+    type: types.USER_SIGNIN_SUCCESS,
+    payload,
+  })
+};
+
 export const register = (name, email, password, password2) => async (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_REQUEST, payload: { name, email, password, password2 } });
   try {

@@ -27,15 +27,11 @@ const Home = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { recipes, loading, error } = useSelector(state => state.rbook.recipe);
-  const { user } = useSelector((state) => {
-    console.log('[HOME] ', state);
-    return state.rbook.user
-  });
+  const { user } = useSelector((state) => state.rbook.user);
 
   useEffect(() => {
     dispatch(rbook.recipe.listRateRecipes());
     return () => {
-      console.log('[GG HOME]');
       dispatch(rbook.recipe.setSearchKeyword(''));
     };
   }, []);

@@ -48,7 +48,7 @@ const CreateCategory = () => {
     <center className = 'welcomeTitle'>Create new category here</center>
     <div  className = 'container'>
       <form onSubmit = {submitHandler} className = 'form-container'>
-        <div class="form-group">
+        <div className="form-group">
           <TextField color = 'secondary'
            type = "text"
            onChange={(e) => setName(e.target.value)}
