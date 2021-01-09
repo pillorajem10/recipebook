@@ -90,7 +90,7 @@ const recipeAddReducer = (state = { recipe: {} }, action) => {
 }
 
 
-const recipeDetailsReducer = (state = {recipe: {} }, action) => {
+const recipeDetailsReducer = (state = {recipe: {}, searchKeyword: '' }, action) => {
   switch(action.type){
     case RECIPE_DETAIL_REQUEST:
       return {loading: true};
