@@ -4,7 +4,8 @@ import * as types from '../types';
 export const addCategory = (name) => async (dispatch, getState) => {
   try {
     dispatch({ type: types.CATEGORY_ADD_REQUEST, payload: { name } });
-    const { userSignin: { user }, } = getState();
+    const { rbook } = getState();
+    const { user: { user }, } = rbook;
     const { data } = await axios.post('/category/create/' + user._id,  { name }, {
       headers: {
         Authorization: `Bearer ${user.token}`,

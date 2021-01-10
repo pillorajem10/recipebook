@@ -11,9 +11,13 @@ import SaveIcon from '@material-ui/icons/Save';
 
 const CreateCategory = () => {
   const [name, setName] = useState('');
-  const { loading, category, error, success } = useSelector(state => state.rbook.category);
+  const { loading, category, error, success } = useSelector(state => {
+    console.log('[STATE] ', state);
+    return state.rbook.category
+  });
   const dispatch = useDispatch();
 
+  console.log('[CREATE CATEGORY] ', category)
   useEffect(() => {
     if (category) {
       //
@@ -69,8 +73,8 @@ const CreateCategory = () => {
   return(
     loading? <CircularProgress color = 'dark' className = 'loading' /> :
     <>
-     {showSuccess()}
-     {showError()}
+     {success && showSuccess()}
+     {!success && showError()}
      {createCategoryForm()}
     </>
   )

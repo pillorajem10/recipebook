@@ -429,8 +429,8 @@ const CreateRecipe = (props) => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> :
     <>
-     {showSuccess()}
-     {showError()}
+     {success && showSuccess()}
+     {!success && showError()}
      {addRecipeForm()}
     </>
   )
