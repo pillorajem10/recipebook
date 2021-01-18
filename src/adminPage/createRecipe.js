@@ -78,7 +78,7 @@ const CreateRecipe = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(rbook.recipe.addRecipe(
+    const payload = {
       name,
       description,
       category,
@@ -105,8 +105,9 @@ const CreateRecipe = (props) => {
       ingredients9,
       ingredients10,
       photo,
-      photo1
-    ));
+      photo1,
+    };
+    dispatch(rbook.recipe.addRecipe(payload));
   }
 
   const showError = () => (
@@ -429,8 +430,8 @@ const CreateRecipe = (props) => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> :
     <>
-     {showSuccess()}
-     {showError()}
+     {success && showSuccess()}
+     {!success && showError()}
      {addRecipeForm()}
     </>
   )
