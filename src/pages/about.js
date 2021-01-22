@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = (props) => {
 
-  document.title='About';
+  document.title='Recipebook | About';
 
   return (
     <div>

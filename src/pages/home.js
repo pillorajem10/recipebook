@@ -28,6 +28,9 @@ const useStyles = makeStyles({
 });
 
 const Home = () => {
+
+  document.title='Recipebook | Home';
+
   const recipeRate = useSelector(state => state.recipeRate);
   const { recipes, loading, error } = recipeRate;
 

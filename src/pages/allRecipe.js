@@ -28,6 +28,9 @@ const useStyles = makeStyles({
 });
 
 const AllRecipe = ({ location }) => {
+
+  document.title='Recipebook | All Recipes';
+
   const recipeListAll = useSelector(state => state.recipeListAll);
   const { recipes, loading, error } = recipeListAll;
 
@@ -42,7 +45,6 @@ const AllRecipe = ({ location }) => {
   const searchKeyword = params.get('keyword');
 
   useEffect(() => {
-    document.title='Recipebook';
     if (searchKeyword === null) {
       dispatch(rbook.recipe.listAllRecipes())
     } else {

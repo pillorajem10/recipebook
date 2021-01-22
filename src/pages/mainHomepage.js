@@ -14,10 +14,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
 
-
-//page title
-document.title =  "Recipebook";
-
 const MainHome = () => {
 
   const [open, setOpen] = useState(true);
