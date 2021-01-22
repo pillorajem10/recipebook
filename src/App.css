@@ -1,0 +1,187 @@
+/*navbar*/
+ul {
+margin: 0;
+padding: 0;
+display: flex;
+list-style-type: none;
+flex-direction: row;
+overflow: hidden;
+background-color: #000000;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+html {
+   height: 100%;
+   box-sizing: inherit;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #efefef;
+  text-align: center;
+}
+
+li a {
+display: block;
+color: white;
+text-align: center;
+padding: 1.8rem 1rem;
+text-decoration: none;
+float: left;
+}
+
+li img{
+  width: 20rem;
+}
+
+li a:hover {
+color: gray;
+text-decoration: none;
+}
+
+
+.welcomeTitle{
+  font-Size: 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+
+/* SIGNUP /SIGNIN PAGE */
+.form-container{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+.errorBox{
+  font-size: 1.5rem;
+  margin-top: 2%;
+  font-weight: bold;
+}
+
+/*card*/
+
+.footer {
+  color: white;
+  background: #000000;
+  height: 3rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.home-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: center;
+  margin-top: 2%;
+}
+
+.container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.card{
+  max-height: 100%;
+  max-Width: 30rem;
+  text-decoration: none;
+  color: black;
+}
+
+.loading{
+ margin-left: 48%;
+ margin-top: 15%;
+}
+
+/*details*/
+.details-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: space-around;
+  text-align: center;
+  flex-flow: row wrap;
+}
+
+.default{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Lobster', cursive;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.description{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  font-size: 150%
+}
+
+
+.recipeName{
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.recipeTitle {
+  font-family: 'Lobster', cursive;
+}
+
+.instructions {
+  margin-top: .5rem;
+}
+
+.instruction-container li{
+  list-style-type: square;
+}
+
+.instruction-container {
+  flex-wrap: wrap;
+}
+
+/*Admin page*/
+
+.adminPageTitle {
+  font-family: 'Lobster', cursive;
+  font-size: 3rem;
+}
+
+.adminLinks{
+  color: red;
+  text-decoration: none;
+}
+
+.adminLinks:hover{
+  color: red;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.searchBar {
+  background: white;
+  width: 25rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
