@@ -77,23 +77,22 @@ export const detailsRecipe = (recipeById) => async (dispatch) => {
 
 export const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
   try {
-   const { userSignin: { user }, userRegister: { userInfo }, } = getState();
+    const {
+      userSignin: {
+        user: { token },
+      },
+    } = getState();
     dispatch({ type: types.RECIPE_REVIEWS_ADD_REQUEST, payload: review });
-    if(user){
-      const { data } = await axios.post(`/recipe/reviews/${recipeId}`, review, {
-          headers: {
-            Authorization: `Bearer ${user.token}`
-          },
-        });
-        dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
-    } else {
-      const { data } = await axios.post(`/recipe/reviews/${recipeId}`, review, {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`
-          },
-        });
-        dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
-    }
+    const { data } = await axios.post(
+      `/recipe/reviews/${recipeId}`,
+      review,
+      {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
   } catch (error) {
     // report error
     dispatch({ type: types.RECIPE_REVIEWS_ADD_FAIL, payload: error.message });

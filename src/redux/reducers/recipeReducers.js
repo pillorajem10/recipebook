@@ -94,7 +94,7 @@ const recipeAddReviewsReducer = (state = {}, action) => {
    case RECIPE_REVIEWS_ADD_SUCCESS:
      return { loading: false, review: action.payload, success: true };
    case RECIPE_REVIEWS_ADD_FAIL:
-     return { loading: false, error: action.payload };
+     return { loading: false, errror: action.payload };
    case RECIPE_REVIEWS_ADD_RESET:
      return {};
    default:
