@@ -19,6 +19,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Signup = (props) => {
+const Signup = () => {
   const classes = useStyles();
   const [values, setValues] = useState({
     name: '',
@@ -47,17 +48,16 @@ const Signup = (props) => {
     showPassword: false,
     showPassword2: false
   });
+  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const { name, email, password, password2 } = values;
 
   const { loading, userInfo, error } = useSelector(state => state.userRegister);
   const dispatch = useDispatch();
 
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/home';
-
   useEffect(() => {
     if (userInfo) {
-     props.history.push(redirect);
+     //
     }
     return () => {
       //
@@ -67,6 +67,7 @@ const Signup = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     dispatch(rbook.user.register(name, email, password, password2));
+    setOpenSnackBar(true);
   }
 
   const handleChange = name => event => {
@@ -85,8 +86,17 @@ const Signup = (props) => {
     event.preventDefault();
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackBar(false);
+  };
+
   const showError = () => (
-    <Alert severity="error">{error}</Alert>
+    <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
+      <Alert severity="error">{error}</Alert>
+    </Snackbar>
   );
 
   const signUpForm = () => (

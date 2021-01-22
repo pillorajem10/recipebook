@@ -19,6 +19,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 //styling for material ui
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Signin = (props) => {
+const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -48,9 +49,9 @@ const Signin = (props) => {
       password: "",
       showPassword: false
   });
+  const [openSnackBar, setOpenSnackBar] = useState(false);
 
   const { loading, user, error } = useSelector(state => state.userSignin);
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/home';
   const { email, password } = values;
 
   useEffect (() => {
@@ -76,11 +77,21 @@ const Signin = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(rbook.user.login(email, password))
-  }
+    dispatch(rbook.user.login(email, password));
+    setOpenSnackBar(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackBar(false);
+  };
 
   const showError = () => (
-   <Alert severity="error">{error}</Alert>
+    <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
+      <Alert severity="error">{error}</Alert>
+    </Snackbar>
   );
 
   const signInForm = () => (

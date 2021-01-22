@@ -59,7 +59,7 @@ const CreateCategory = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     dispatch(rbook.category.addCategory(name));
-    setOpenSnackBar(true)
+    setOpenSnackBar(true);
   }
 
   const handleClose = (event, reason) => {
