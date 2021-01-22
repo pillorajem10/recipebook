@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navbar/>
+      //<Navbar/>
       <Switch>
          <LoggedInRoute path='/' exact={true} component={Signin}/>
          <PrivateRoute path='/home' component={MainHome}/>
