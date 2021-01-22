@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Home = (props) => {
+const Home = () => {
   const recipeRate = useSelector(state => state.recipeRate);
   const { recipes, loading, error } = recipeRate;
 
