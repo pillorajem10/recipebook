@@ -106,6 +106,42 @@ const RecipeDetails = (props) => {
        </div>
      </div>
      <hr/>
+     <center className = 'welcomeTitle'>Rate this recipe</center>
+     <center><Rating
+       name="rating"
+       id='rating'
+       value={rating}
+       onChange={(event, newValue) => {
+         setRating(newValue);
+       }}
+     />
+     <hr/></center>
+     <center className = 'welcomeTitle'>Write a comment here</center>
+     {userInfo || user ? (
+       <div  className = 'container'>
+         <form className = 'form-container' onSubmit = {submitHandler}>
+           <div class="form-group">
+             <textarea
+              rows = '5'
+              type = "text"
+              className = "form-control"
+              placeholder = "Do you have comments in this recipe? Write here."
+              required
+              name = 'comment'
+              id = 'comment'
+              value = {comment}
+              onChange={(e) => setComment(e.target.value)}
+             />
+           </div>
+           <Button variant="contained" type="submit">Comment</Button>
+         </form>
+       </div>
+     ) : (
+       <div>
+         Please <Link to="/">Sign-in</Link> to write a reviews.
+       </div>
+     )}
+     <hr/>
      <center>
        <center className = 'welcomeTitle'>Reviews</center>
        {recipe.reviews && recipe.reviews.length > 0 ? (
@@ -126,42 +162,6 @@ const RecipeDetails = (props) => {
          <h3>
           There are no reviews in this recipe. Write the first one
          </h3>
-       )}
-       <hr/>
-       <center className = 'welcomeTitle'>Rate this recipe</center>
-       <Rating
-         name="rating"
-         id='rating'
-         value={rating}
-         onChange={(event, newValue) => {
-           setRating(newValue);
-         }}
-       />
-       <hr/>
-       <center className = 'welcomeTitle'>Write a comment here</center>
-       {userInfo || user ? (
-         <div  className = 'container'>
-           <form className = 'form-container' onSubmit = {submitHandler}>
-             <div class="form-group">
-               <textarea
-                rows = '5'
-                type = "text"
-                className = "form-control"
-                placeholder = "Do you have comments in this recipe? Write here."
-                required
-                name = 'comment'
-                id = 'comment'
-                value = {comment}
-                onChange={(e) => setComment(e.target.value)}
-               />
-             </div>
-             <Button variant="contained" type="submit">Comment</Button>
-           </form>
-         </div>
-       ) : (
-         <div>
-           Please <Link to="/">Sign-in</Link> to write a reviews.
-         </div>
        )}
      </center>
     </>
