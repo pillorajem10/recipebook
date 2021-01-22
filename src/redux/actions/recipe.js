@@ -1,26 +1,26 @@
 import axios from 'axios';
 import * as types from '../types';
 
-export const listRecipes = ( pageIndex = 1, pageSize = 6 ) => async (dispatch) => {
+export const listRecipes = ( sortBy = 'createdAt', order = 'desc', limit = 6  ) => async (dispatch) => {
   try{
     dispatch({type: types.RECIPE_LIST_REQUEST});
     const { data } = await axios.get(
-    '/recipe?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+    '/recipe/sort?sortBy=' + sortBy + '&order=' + order + '&limit=' + limit
 );
-    dispatch({type: types.RECIPE_LIST_SUCCESS, payload: data.docs});
+    dispatch({type: types.RECIPE_LIST_SUCCESS, payload: data});
   }
   catch(error){
     dispatch({type: types.RECIPE_LIST_FAIL, payload: error.message})
   }
 }
 
-export const listRateRecipes = ( pageIndex = 1, pageSize = 6 ) => async (dispatch) => {
+export const listRateRecipes = ( sortBy = 'finalRating', order = 'desc', limit = 6  ) => async (dispatch) => {
   try{
     dispatch({type: types.RECIPE_LIST_MRATE_REQUEST});
     const { data } = await axios.get(
-    '/recipe?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+    '/recipe/sort?sortBy=' + sortBy + '&order=' + order + '&limit=' + limit
 );
-    dispatch({type: types.RECIPE_LIST_MRATE_SUCCESS, payload: data.docs});
+    dispatch({type: types.RECIPE_LIST_MRATE_SUCCESS, payload: data});
   }
   catch(error){
     dispatch({type: types.RECIPE_LIST_MRATE_FAIL, payload: error.message})
@@ -77,22 +77,25 @@ export const detailsRecipe = (recipeById) => async (dispatch) => {
 
 export const saveRecipeReview = (recipeId, review) => async (dispatch, getState) => {
   try {
-    const {
-      userSignin: {
-        user: { token },
-      },
-    } = getState();
+    const { userSignin: { user }, userRegister: { userInfo } } = getState();
     dispatch({ type: types.RECIPE_REVIEWS_ADD_REQUEST, payload: review });
-    const { data } = await axios.post(
-      `/recipe/reviews/${recipeId}`,
-      review,
-      {
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      }
-    );
-    dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
+    if(user) {
+      const { data } = await axios.post(
+        `/recipe/reviews/${recipeId}`, review, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+      dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
+    } else {
+      const { data } = await axios.post(
+        `/recipe/reviews/${recipeId}`, review, {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        });
+      dispatch({ type: types.RECIPE_REVIEWS_ADD_SUCCESS, payload: data });
+    }
   } catch (error) {
     // report error
     dispatch({ type: types.RECIPE_REVIEWS_ADD_FAIL, payload: error.message });
