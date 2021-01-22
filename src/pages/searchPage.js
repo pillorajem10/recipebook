@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { rbook } from '../redux/combineActions';
 
 //navigation
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 //material-ui
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,26 +34,28 @@ const useStyles = makeStyles({
   }
 });
 
-const AllRecipe = ({ location }) => {
+const SearchPage = ({ location }) => {
   const [recipeList, setRecipeList] = useState([]);
   const [pageDetails, setPageDetails] = useState(null);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(5);
 
-  document.title='Recipebook | All Recipes';
+  document.title='Recipebook | Searched Recipes';
 
-  const recipeListAll = useSelector(state => state.recipeListAll);
-  const { loading, error } = recipeListAll;
+  const { loading, error } = useSelector(state => state.recipeSearch);
 
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const classes = useStyles();
 
   const { user } = useSelector((state) => state.userSignin);
   const { userInfo } = useSelector((state) => state.userRegister);
 
+  const params = new URLSearchParams(location.search);
+  const searchKeyword = params.get('keyword');
+
   const handleRecipeList = useCallback(
     (pageIndex = 1) => {
-      dispatch(rbook.recipe.listAllRecipes(pageIndex, pageSize))
+      dispatch(rbook.recipe.listSearchRecipes(searchKeyword, pageIndex, pageSize))
         .then((data) => {
           if (data) {
             setRecipeList(data.docs);
@@ -65,18 +67,21 @@ const AllRecipe = ({ location }) => {
           }
         })
     },
-    [dispatch, pageSize],
+    [dispatch, pageSize, searchKeyword],
   );
 
   useEffect(() => {
-    handleRecipeList();
+    if(searchKeyword === null){
+      history.push('/recipes')
+    } else {
+      handleRecipeList();
+    }
   }, [handleRecipeList]);
 
   if(!pageDetails) return null;
 
   const handleChangePageIndex = (event, value) => {
     handleRecipeList(value);
-    console.log('valueeeee', value)
   };
 
   return (
@@ -84,7 +89,7 @@ const AllRecipe = ({ location }) => {
     <>
       { userInfo || user ? (
          <>
-           <center className = 'welcomeTitle'>All recipes</center>
+           <center className = 'welcomeTitle'>Searched recipes</center>
          </>
        ) : (
       null
@@ -131,7 +136,9 @@ const AllRecipe = ({ location }) => {
         <div style = {{fontSize: '4rem'}} >No recipes found</div>
       ) }
       </div>
-      { recipeList.length <= pageSize ? (
+      { recipeList.length < pageSize ? (
+       null
+      ) : (
         <Pagination
           count={pageDetails.totalPages}
           page={pageDetails.pageIndex}
@@ -143,11 +150,9 @@ const AllRecipe = ({ location }) => {
           showLastButton
           classes={{ ul: classes.paginator }}
         />
-      ) : (
-        null
       ) }
     </>
   )
 }
 
-export default AllRecipe;
+export default SearchPage;

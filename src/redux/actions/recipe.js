@@ -27,16 +27,31 @@ export const listRateRecipes = ( sortBy = 'finalRating', order = 'desc', limit =
   }
 }
 
-export const listAllRecipes = ( searchKeyword = '', pageIndex = 1, pageSize = 20 ) => async (dispatch) => {
+export const listAllRecipes = (pageIndex = '', pageSize = '' ) => async (dispatch) => {
   try{
     dispatch({type: types.RECIPE_LIST_ALL_REQUEST});
     const { data } = await axios.get(
-    '/recipe?name=' + searchKeyword + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize
-);
-    dispatch({type: types.RECIPE_LIST_ALL_SUCCESS, payload: data.docs});
+    '/recipe?pageIndex=' + pageIndex + '&pageSize=' + pageSize
+     );
+    dispatch({type: types.RECIPE_LIST_ALL_SUCCESS, payload: data});
+    return data
   }
   catch(error){
     dispatch({type: types.RECIPE_LIST_ALL_FAIL, payload: error.message})
+  }
+}
+
+export const listSearchRecipes = (searchKeyword = '', pageIndex = '', pageSize = '' ) => async (dispatch) => {
+  try{
+    dispatch({type: types.RECIPE_SEARCH_REQUEST});
+    const { data } = await axios.get(
+    '/recipe?name='+ searchKeyword + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize
+     );
+    dispatch({type: types.RECIPE_SEARCH_SUCCESS, payload: data});
+    return data
+  }
+  catch(error){
+    dispatch({type: types.RECIPE_SEARCH_FAIL, payload: error.message})
   }
 }
 

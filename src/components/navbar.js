@@ -49,9 +49,12 @@ const HideAppBar = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(rbook.recipe.listAllRecipes(searchKeyword));
+    dispatch(rbook.recipe.listSearchRecipes(searchKeyword));
     setSearchKeyword('')
-    history.push('/recipes?keyword=' + searchKeyword)
+    history.push('/search?keyword=' + searchKeyword)
+    if (searchKeyword === null) {
+      history.push('/recipes')
+    }
   };
 
   const handleLogout = () => {

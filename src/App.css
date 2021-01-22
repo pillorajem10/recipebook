@@ -52,7 +52,7 @@ text-decoration: none;
 .welcomeTitle{
   font-Size: 2.5rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 
@@ -88,7 +88,6 @@ text-decoration: none;
   flex-wrap: wrap;
   align-items: stretch;
   align-content: center;
-  margin-top: 2%;
 }
 
 .container{

@@ -16,6 +16,7 @@ import Default from './pages/default';
 import RecipeDetails from './pages/recipeDetails';
 import AllRecipe from './pages/allRecipe';
 import MainHome from './pages/mainHomepage';
+import SearchPage from './pages/searchPage';
 
 //adminPage
 import AdminPage from './adminPage/adminPage';
@@ -38,6 +39,7 @@ const App = () => {
          <PrivateRoute path='/recipes' component={AllRecipe}/>
          <LoggedInRoute path='/signup' component={Signup}/>
          <PrivateRoute path='/about' component={About}/>
+         <PrivateRoute path='/search' component={SearchPage}/>
          <PrivateRoute path='/recipe/:id' component={RecipeDetails}/>
          <AdminRoute path='/admin' component={AdminPage}/>
          <AdminRoute path='/createrecipe' component={CreateRecipe}/>
