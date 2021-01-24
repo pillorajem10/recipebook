@@ -47,9 +47,6 @@ const SearchPage = ({ location }) => {
   const history = useHistory();
   const classes = useStyles();
 
-  const { user } = useSelector((state) => state.userSignin);
-  const { userInfo } = useSelector((state) => state.userRegister);
-
   const params = new URLSearchParams(location.search);
   const searchKeyword = params.get('keyword');
 
@@ -87,13 +84,7 @@ const SearchPage = ({ location }) => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
-      { userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>Searched recipes</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>Searched recipes</center>
       <div className = 'home-container'>
       { recipeList.length > 0 ? (
         <>

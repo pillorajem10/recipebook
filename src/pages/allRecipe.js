@@ -46,9 +46,6 @@ const AllRecipe = ({ location }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { user } = useSelector((state) => state.userSignin);
-  const { userInfo } = useSelector((state) => state.userRegister);
-
   const handleRecipeList = useCallback(
     (pageIndex = 1) => {
       dispatch(rbook.recipe.listAllRecipes(pageIndex, pageSize))
@@ -74,19 +71,12 @@ const AllRecipe = ({ location }) => {
 
   const handleChangePageIndex = (event, value) => {
     handleRecipeList(value);
-    console.log('valueeeee', value)
   };
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
-      { userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>All recipes</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>All recipes</center>
       <div className = 'home-container'>
       { recipeList.length > 0 ? (
         <>
@@ -103,9 +93,6 @@ const AllRecipe = ({ location }) => {
                <CardContent>
                  <Typography gutterBottom variant="h5" component="h2">
                    {recipes.name}
-                 </Typography>
-                 <Typography variant="body2" color="textSecondary" component="p">
-                   {recipes.description}
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
                    <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>

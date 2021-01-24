@@ -35,11 +35,7 @@ const Home = () => {
   const { recipes, loading, error } = recipeRate;
 
   const dispatch = useDispatch();
-
   const classes = useStyles();
-
-  const { user } = useSelector((state) => state.userSignin);
-  const { userInfo } = useSelector((state) => state.userRegister);
 
   useEffect(() => {
     dispatch(rbook.recipe.listRateRecipes());
@@ -51,13 +47,7 @@ const Home = () => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
-      {userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>Here our most popular recipes</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>Here our most popular recipes</center>
       <div className = 'home-container'>
       { recipes.length > 0 ? (
         <>
@@ -74,9 +64,6 @@ const Home = () => {
                <CardContent>
                  <Typography gutterBottom variant="h5" component="h2">
                    {recipes.name}
-                 </Typography>
-                 <Typography variant="body2" color="textSecondary" component="p">
-                   {recipes.description}
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
                    <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
