@@ -41,11 +41,9 @@ const AllRecipe = ({ location }) => {
 
   document.title='Recipebook | All Recipes';
 
-  const recipeListAll = useSelector(state => state.recipeListAll);
-  const { loading, error } = recipeListAll;
+  const { loading, error } = useSelector(state => state.recipeListAll);
 
   const dispatch = useDispatch();
-
   const classes = useStyles();
 
   const { user } = useSelector((state) => state.userSignin);

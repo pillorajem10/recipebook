@@ -89,7 +89,7 @@ const Signin = () => {
   };
 
   const showError = () => (
-    <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
+    <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={2000} onClose={handleClose}>
       <Alert severity="error">{error}</Alert>
     </Snackbar>
   );
