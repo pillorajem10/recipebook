@@ -45,7 +45,7 @@ export const listSearchRecipes = (searchKeyword = '', pageIndex = '', pageSize =
   try{
     dispatch({type: types.RECIPE_SEARCH_REQUEST});
     const { data } = await axios.get(
-    '/recipe?name='+ searchKeyword + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize
+    '/recipe/search?name='+ searchKeyword + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize
      );
     dispatch({type: types.RECIPE_SEARCH_SUCCESS, payload: data});
     return data

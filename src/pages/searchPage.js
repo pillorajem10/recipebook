@@ -71,7 +71,7 @@ const SearchPage = ({ location }) => {
   );
 
   useEffect(() => {
-    if(searchKeyword === null){
+    if(searchKeyword === null || !searchKeyword){
       history.push('/recipes')
     } else {
       handleRecipeList();
