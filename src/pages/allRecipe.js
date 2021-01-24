@@ -21,7 +21,7 @@ import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles({
   root: {
-    maxHeight: "100%",
+    maxHeight: "45rem",
     maxWidth: "15rem",
     marginTop: '2rem',
     marginLeft: '.7rem'
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 const AllRecipe = ({ location }) => {
   const [recipeList, setRecipeList] = useState([]);
   const [pageDetails, setPageDetails] = useState(null);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(5);
 
   document.title='Recipebook | All Recipes';
 
@@ -45,11 +45,7 @@ const AllRecipe = ({ location }) => {
   const { loading, error } = recipeListAll;
 
   const dispatch = useDispatch();
-
   const classes = useStyles();
-
-  const { user } = useSelector((state) => state.userSignin);
-  const { userInfo } = useSelector((state) => state.userRegister);
 
   const handleRecipeList = useCallback(
     (pageIndex = 1) => {
@@ -85,16 +81,13 @@ const AllRecipe = ({ location }) => {
          <CardMedia
            component="img"
            alt={recipe.name}
-           height="500"
+           height="300"
            image={`/recipe/photo/${recipe._id}`}
            title="Contemplative Reptile"
          />
          <CardContent>
            <Typography gutterBottom variant="h5" component="h2">
              {recipe.name}
-           </Typography>
-           <Typography variant="body2" color="textSecondary" component="p">
-             {recipe.description}
            </Typography>
            <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
              <Rating readOnly value={recipe.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipe.rating.toFixed(1)}</div>
@@ -106,7 +99,7 @@ const AllRecipe = ({ location }) => {
          <CardActions>
            <Link to = {`/recipe/${recipe._id}`}>
              <Button size="small" color="primary">
-               Learn More
+               Read more
              </Button>
            </Link>
          </CardActions>
@@ -116,11 +109,10 @@ const AllRecipe = ({ location }) => {
 
   return (
     <>
+      {loading && <CircularProgress color = 'dark' className = 'loading' />}
+      {error && <div>{error}</div>}
       <center className = 'welcomeTitle'>All recipes</center>
       <div className = 'home-container'>
-
-        {loading && <CircularProgress color = 'dark' className = 'loading' />}
-        {error && <div>{error}</div>}
 
         {recipeList.length === 0 &&
           <div style = {{fontSize: '4rem'}} >No recipes found</div>
@@ -130,17 +122,23 @@ const AllRecipe = ({ location }) => {
         ))}
       </div>
 
-      <Pagination
-        count={pageDetails.totalPages}
-        page={pageDetails.pageIndex}
-        defaultPage={1}
-        color="primary"
-        size="large"
-        onChange={handleChangePageIndex}
-        showFirstButton
-        showLastButton
-        classes={{ ul: classes.paginator }}
-      />
+      {recipeList.length < pageSize ?
+        (
+         null
+        ) : (
+          <Pagination
+            count={pageDetails.totalPages}
+            page={pageDetails.pageIndex}
+            defaultPage={1}
+            color="primary"
+            size="large"
+            onChange={handleChangePageIndex}
+            showFirstButton
+            showLastButton
+            classes={{ ul: classes.paginator }}
+          />
+        )
+      }
     </>
   )
 }

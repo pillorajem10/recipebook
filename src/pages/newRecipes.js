@@ -19,9 +19,9 @@ import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles({
   root: {
-    maxHeight: "100%",
-    maxWidth: "25rem",
-    marginTop: '2rem',
+    maxHeight: "45rem",
+    maxWidth: "15rem",
+    marginTop: '1rem',
     marginLeft: '.7rem'
   },
 });
@@ -30,7 +30,6 @@ const NewRecipes = () => {
   const { recipes, loading, error } = useSelector(state => state.recipeList);
 
   const dispatch = useDispatch();
-
   const classes = useStyles();
 
   const { user } = useSelector((state) => state.userSignin);
@@ -62,16 +61,13 @@ const NewRecipes = () => {
                <CardMedia
                  component="img"
                  alt={recipes.name}
-                 height="500"
+                 height="300"
                  image={`/recipe/photo/${recipes._id}`}
                  title="Contemplative Reptile"
                />
                <CardContent>
                  <Typography gutterBottom variant="h5" component="h2">
                    {recipes.name}
-                 </Typography>
-                 <Typography variant="body2" color="textSecondary" component="p">
-                   {recipes.description}
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
                    <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
@@ -83,7 +79,7 @@ const NewRecipes = () => {
                <CardActions>
                  <Link to = {`/recipe/${recipes._id}`}>
                    <Button size="small" color="primary">
-                     Learn More
+                     Read more
                    </Button>
                  </Link>
                </CardActions>

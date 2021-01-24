@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from '../types';
 
-export const listRecipes = ( sortBy = 'createdAt', order = 'desc', limit = 6  ) => async (dispatch) => {
+export const listRecipes = ( sortBy = 'createdAt', order = 'desc', limit = 5  ) => async (dispatch) => {
   try{
     dispatch({type: types.RECIPE_LIST_REQUEST});
     const { data } = await axios.get(
@@ -14,7 +14,7 @@ export const listRecipes = ( sortBy = 'createdAt', order = 'desc', limit = 6  ) 
   }
 }
 
-export const listRateRecipes = ( sortBy = 'finalRating', order = 'desc', limit = 6  ) => async (dispatch) => {
+export const listRateRecipes = ( sortBy = 'finalRating', order = 'desc', limit = 5  ) => async (dispatch) => {
   try{
     dispatch({type: types.RECIPE_LIST_MRATE_REQUEST});
     const { data } = await axios.get(
