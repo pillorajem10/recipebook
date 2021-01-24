@@ -79,73 +79,68 @@ const AllRecipe = ({ location }) => {
     console.log('valueeeee', value)
   };
 
+  const createBanana = (recipe, idx) => {
+    return (
+      <Card key={idx} className={classes.root}>
+         <CardMedia
+           component="img"
+           alt={recipe.name}
+           height="500"
+           image={`/recipe/photo/${recipe._id}`}
+           title="Contemplative Reptile"
+         />
+         <CardContent>
+           <Typography gutterBottom variant="h5" component="h2">
+             {recipe.name}
+           </Typography>
+           <Typography variant="body2" color="textSecondary" component="p">
+             {recipe.description}
+           </Typography>
+           <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+             <Rating readOnly value={recipe.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipe.rating.toFixed(1)}</div>
+           </Typography>
+           <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+             <div style = {{fontSize: "1rem"}}>Number of reviews: {recipe.numReviews}</div>
+           </Typography>
+         </CardContent>
+         <CardActions>
+           <Link to = {`/recipe/${recipe._id}`}>
+             <Button size="small" color="primary">
+               Learn More
+             </Button>
+           </Link>
+         </CardActions>
+       </Card>
+    );
+  };
+
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
     <>
-      { userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>All recipes</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>All recipes</center>
       <div className = 'home-container'>
-      { recipeList.length > 0 ? (
-        <>
-          {
-           recipeList.map( recipes =>
-            <Card className={classes.root}>
-               <CardMedia
-                 component="img"
-                 alt={recipes.name}
-                 height="500"
-                 image={`/recipe/photo/${recipes._id}`}
-                 title="Contemplative Reptile"
-               />
-               <CardContent>
-                 <Typography gutterBottom variant="h5" component="h2">
-                   {recipes.name}
-                 </Typography>
-                 <Typography variant="body2" color="textSecondary" component="p">
-                   {recipes.description}
-                 </Typography>
-                 <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
-                   <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
-                 </Typography>
-                 <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
-                   <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>
-                 </Typography>
-               </CardContent>
-               <CardActions>
-                 <Link to = {`/recipe/${recipes._id}`}>
-                   <Button size="small" color="primary">
-                     Learn More
-                   </Button>
-                 </Link>
-               </CardActions>
-             </Card>
-            )
-           }
-         </>
-      ) : (
-        <div style = {{fontSize: '4rem'}} >No recipes found</div>
-      ) }
+
+        {loading && <CircularProgress color = 'dark' className = 'loading' />}
+        {error && <div>{error}</div>}
+
+        {recipeList.length === 0 &&
+          <div style = {{fontSize: '4rem'}} >No recipes found</div>
+        }
+        {recipeList.map((recipe, index) => (
+          createBanana(recipe, index)
+        ))}
       </div>
-      { recipeList.length <= pageSize ? (
-        <Pagination
-          count={pageDetails.totalPages}
-          page={pageDetails.pageIndex}
-          defaultPage={1}
-          color="primary"
-          size="large"
-          onChange={handleChangePageIndex}
-          showFirstButton
-          showLastButton
-          classes={{ ul: classes.paginator }}
-        />
-      ) : (
-        null
-      ) }
+
+      <Pagination
+        count={pageDetails.totalPages}
+        page={pageDetails.pageIndex}
+        defaultPage={1}
+        color="primary"
+        size="large"
+        onChange={handleChangePageIndex}
+        showFirstButton
+        showLastButton
+        classes={{ ul: classes.paginator }}
+      />
     </>
   )
 }
