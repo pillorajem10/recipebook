@@ -16,13 +16,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
     maxHeight: "45rem",
     maxWidth: "15rem",
     marginTop: '1rem',
-    marginLeft: '.7rem'
+    marginLeft: '.7rem',
+    whiteSpace: 'nowrap'
   },
 });
 
@@ -66,8 +68,15 @@ const NewRecipes = () => {
                  title="Contemplative Reptile"
                />
                <CardContent>
-                 <Typography gutterBottom variant="h5" component="h2">
-                   {recipes.name}
+                 <Typography gutterBottom variant="h6">
+                   <Box
+                     component="div"
+                     my={2}
+                     textOverflow="ellipsis"
+                     overflow="hidden"
+                   >
+                     {recipes.name}
+                   </Box>
                  </Typography>
                  <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
                    <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
