@@ -53,13 +53,7 @@ const Home = () => {
   return (
     loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
     <>
-      {userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>Here our most popular recipes</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>Here our most popular recipes</center>
       <div className = 'home-container'>
       { recipes.length > 0 ? (
         <>

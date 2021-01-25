@@ -131,7 +131,7 @@ const AllRecipe = ({ location }) => {
         ))}
       </div>
 
-      {pageDetails.totalDocs < pageDetails.pageSize ?
+      {pageDetails.totalDocs <= pageDetails.pageSize ?
         (
          null
         ) : (

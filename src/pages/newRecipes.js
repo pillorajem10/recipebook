@@ -34,9 +34,6 @@ const NewRecipes = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { user } = useSelector((state) => state.userSignin);
-  const { userInfo } = useSelector((state) => state.userRegister);
-
   useEffect(() => {
     dispatch(rbook.recipe.listRecipes());
     return () => {
@@ -47,13 +44,7 @@ const NewRecipes = () => {
   return (
     loading? null : error? <div>{error}</div> :
     <>
-      {userInfo || user ? (
-         <>
-           <center className = 'welcomeTitle'>New recipes for you</center>
-         </>
-       ) : (
-      null
-      )}
+      <center className = 'welcomeTitle'>New recipes for you</center>
       <div className = 'home-container'>
       { recipes.length > 0 ? (
         <>

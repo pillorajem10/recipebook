@@ -13,11 +13,24 @@ import Rating from '@material-ui/lab/Rating';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  paginator: {
+    justifyContent: "center",
+    padding: "10px",
+    marginTop:'1%',
+    backgroundColor: "#FFFFFF",
+  }
+});
 
 const RecipeDetails = (props) => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [commentsPerPage] = useState(3);
+  const [page, setPage] = useState(1);
 
   const {recipe, loading, error} = useSelector(state => state.recipeDetails);
   const { user } = useSelector((state) => state.userSignin);
@@ -25,6 +38,11 @@ const RecipeDetails = (props) => {
   const { success: recipeReviewSave } = useSelector((state) => state.addReview);
 
   const dispatch = useDispatch();
+  const classes = useStyles();
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     if (recipeReviewSave) {
@@ -73,6 +91,7 @@ const showSuccess = () => (
     <Alert severity="success">Comment added</Alert>
   </Snackbar>
 );
+
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
@@ -168,8 +187,10 @@ const showSuccess = () => (
        <center className = 'welcomeTitle'>Reviews</center>
        {recipe.reviews && recipe.reviews.length > 0 ? (
          <div>
-           {recipe.reviews && recipe.reviews.map((review) => (
-             <div style = {{ marginTop: '1.5rem' }} key={review._id}>
+           {recipe.reviews && recipe.reviews
+             .slice((page - 1) * commentsPerPage, page * commentsPerPage)
+             .map((review) => (
+             <div key={review._id}>
                { review.userRole === 1 ? (
                  <b style = {{ fontSize: '1.2rem' }} >{review.name} (Admin)</b>
                ) : (
@@ -179,6 +200,23 @@ const showSuccess = () => (
                <div style = {{ fontSize: '1.5rem' }} >{review.comment}</div>
              </div>
            ))}
+           {
+             recipe.reviews.length <= commentsPerPage ? (
+               null
+             ) : (
+               <Pagination
+                 count={Math.ceil(recipe.reviews.length / commentsPerPage)}
+                 page={page}
+                 onChange={handleChange}
+                 defaultPage={1}
+                 color="primary"
+                 size="large"
+                 showFirstButton
+                 showLastButton
+                 classes={{ ul: classes.paginator }}
+               />
+             )
+           }
          </div>
        ) : (
          <h3>

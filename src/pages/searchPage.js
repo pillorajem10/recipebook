@@ -24,7 +24,6 @@ const useStyles = makeStyles({
   root: {
     maxHeight: "33rem",
     maxWidth: "15rem",
-    marginTop: '2rem',
     marginLeft: '.7rem',
     whiteSpace: 'nowrap'
   },
@@ -90,7 +89,7 @@ const SearchPage = ({ location }) => {
          <CardMedia
            component="img"
            alt={recipe.name}
-           height="300"
+           height="200"
            image={`/recipe/photo/${recipe._id}`}
            title="Contemplative Reptile"
          />
@@ -139,7 +138,7 @@ const SearchPage = ({ location }) => {
         ))}
       </div>
 
-      {pageDetails.totalDocs < pageDetails.pageSize ?
+      {pageDetails.totalDocs <= pageDetails.pageSize ?
         (
          null
         ) : (
