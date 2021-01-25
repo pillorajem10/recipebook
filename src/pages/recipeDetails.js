@@ -39,7 +39,6 @@ const RecipeDetails = (props) => {
 
   const submitHandler = (e) => {
   e.preventDefault();
-  // dispatch actions
   if(user) {
     dispatch(
       rbook.recipe.saveRecipeReview(props.match.params.id, {
@@ -70,7 +69,6 @@ const handleClose = (event, reason) => {
 };
 
 const showSuccess = () => (
-  console.log('OPEN'),
   <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
     <Alert severity="success">Comment added</Alert>
   </Snackbar>
