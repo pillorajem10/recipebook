@@ -107,8 +107,12 @@ text-decoration: none;
 }
 
 .loading{
- margin-left: 48%;
+ margin-top: 10%;
+}
+
+.loading1{
  margin-top: 15%;
+ margin-left: 48.5%;
 }
 
 /*details*/

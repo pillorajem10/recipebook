@@ -20,7 +20,7 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
-    maxHeight: "45rem",
+    maxHeight: "35rem",
     maxWidth: "15rem",
     marginTop: '1rem',
     marginLeft: '.7rem',
@@ -63,7 +63,7 @@ const NewRecipes = () => {
                <CardMedia
                  component="img"
                  alt={recipes.name}
-                 height="300"
+                 height="250"
                  image={`/recipe/photo/${recipes._id}`}
                  title="Contemplative Reptile"
                />
@@ -78,10 +78,10 @@ const NewRecipes = () => {
                      {recipes.name}
                    </Box>
                  </Typography>
-                 <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+                 <Typography variant="body2" color="textSecondary" component="p">
                    <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
                  </Typography>
-                 <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+                 <Typography variant="body2" color="textSecondary" component="p">
                    <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>
                  </Typography>
                </CardContent>

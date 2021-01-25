@@ -22,7 +22,7 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   root: {
-    maxHeight: "45rem",
+    maxHeight: "33rem",
     maxWidth: "15rem",
     marginTop: '2rem',
     marginLeft: '.7rem',
@@ -62,6 +62,7 @@ const SearchPage = ({ location }) => {
               pageIndex: data.page,
               pageSize: data.limit,
               totalPages: data.totalPages,
+              totalDocs: data.totalDocs
             });
           }
         })
@@ -85,7 +86,7 @@ const SearchPage = ({ location }) => {
 
   const createBanana = (recipe, idx) => {
     return (
-      <Card key={idx} className={classes.root}>
+      <Card style = {{ display: loading && 'none' }} key={idx} className={classes.root}>
          <CardMedia
            component="img"
            alt={recipe.name}
@@ -104,10 +105,10 @@ const SearchPage = ({ location }) => {
                {recipe.name}
              </Box>
            </Typography>
-           <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+           <Typography variant="body2" color="textSecondary" component="p">
              <Rating readOnly value={recipe.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipe.rating.toFixed(1)}</div>
            </Typography>
-           <Typography style = {{marginTop:'2%'}} variant="body2" color="textSecondary" component="p">
+           <Typography variant="body2" color="textSecondary" component="p">
              <div style = {{fontSize: "1rem"}}>Number of reviews: {recipe.numReviews}</div>
            </Typography>
          </CardContent>
@@ -124,10 +125,11 @@ const SearchPage = ({ location }) => {
 
   return (
     <>
-      {loading && <CircularProgress color = 'dark' className = 'loading' />}
-      {error && <div>{error}</div>}
-      <center className = 'welcomeTitle'>All recipes</center>
+      <center className = 'welcomeTitle'>Searched recipes</center>
       <div className = 'home-container'>
+
+        {loading && <CircularProgress color = 'dark' className = 'loading' />}
+        {error && <div>{error}</div>}
 
         {recipeList.length === 0 &&
           <div style = {{fontSize: '4rem'}} >No recipes found</div>
@@ -137,11 +139,12 @@ const SearchPage = ({ location }) => {
         ))}
       </div>
 
-      {recipeList.length < pageSize ?
+      {pageDetails.totalDocs < pageDetails.pageSize ?
         (
          null
         ) : (
           <Pagination
+            style = {{ display: loading && 'none' }}
             count={pageDetails.totalPages}
             page={pageDetails.pageIndex}
             defaultPage={1}

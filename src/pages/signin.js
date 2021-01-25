@@ -85,7 +85,7 @@ const Signin = () => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpenSnackBar(false);
+      setOpenSnackBar(false);
   };
 
   const showError = () => (
@@ -145,7 +145,7 @@ const Signin = () => {
   document.title='Recipebook';
 
   return (
-      loading? <CircularProgress color = 'dark' className = 'loading' />  :
+      loading? <CircularProgress color = 'dark' className = 'loading1' />  :
       <>
        {signInForm()}
       </>

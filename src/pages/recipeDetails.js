@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { rbook } from '../redux/combineActions';
-import { RECIPE_REVIEWS_ADD_RESET } from '../redux/types';
 
 //navigation
 import { Link } from 'react-router-dom';
@@ -12,21 +11,24 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const RecipeDetails = (props) => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
-  const recipeDetails = useSelector(state => state.recipeDetails);
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+
+  const {recipe, loading, error} = useSelector(state => state.recipeDetails);
   const { user } = useSelector((state) => state.userSignin);
   const { userInfo } = useSelector((state) => state.userRegister);
-  const {recipe, loading, error} = recipeDetails;
   const { success: recipeReviewSave } = useSelector((state) => state.addReview);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (recipeReviewSave) {
       setComment('');
-      dispatch({ type: RECIPE_REVIEWS_ADD_RESET });
       setRating(0);
     }
     dispatch(rbook.recipe.detailsRecipe(props.match.params.id));
@@ -57,12 +59,34 @@ const RecipeDetails = (props) => {
       })
     );
   }
+  setOpenSnackBar(true);
 };
 
+const handleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+    setOpenSnackBar(false);
+};
+
+const showSuccess = () => (
+  console.log('OPEN'),
+  <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={openSnackBar} autoHideDuration={3000} onClose={handleClose}>
+    <Alert severity="success">Comment added</Alert>
+  </Snackbar>
+);
+
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading' /> : error? <div>{error}</div> :
+    loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
     <>
-    <div style = {{display: 'none'}}>{document.title=recipe.name}</div>
+    {recipeReviewSave && showSuccess()}
+    {
+      recipe.name === undefined ? (
+        <div style = {{display: 'none'}}>loading</div>
+      ) : (
+        <div style = {{display: 'none'}}>{document.title=recipe.name}</div>
+      )
+    }
      <center className = 'recipeName'>{recipe.name}</center>
      <div className = 'details-container'>
        <div className = 'card'>
