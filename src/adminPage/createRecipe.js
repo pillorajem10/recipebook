@@ -37,6 +37,17 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginBottom: '3%',
     width: '100%',
+    '& label.Mui-focused': {
+      color: '#FF3F16',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#FF3F16',
+    },
+    '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+           borderColor: '#FF3F16',
+        },
+    },
   },
 }));
 
@@ -174,15 +185,14 @@ const CreateRecipe = (props) => {
             multiline
             name="description"
             onChange={(e) => setDescription(e.target.value)}
+            variant="outlined"
             rows={4}
-            variant="filled"
           />
         </FormControl>
         <FormControl className={(classes.margin, classes.textField)}>
           <InputLabel htmlFor="age-native-simple">Category</InputLabel>
           <Select
             native
-
             onChange={(e) => setCategory(e.target.value)}
             inputProps={{
               name: 'category',
@@ -203,7 +213,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients(e.target.value)}
-
             required
             id = 'ingredients'
             name = 'ingredients'
@@ -214,7 +223,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients1(e.target.value)}
-
             required
             id = 'ingredients1'
             name = 'ingredients1'
@@ -225,7 +233,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients2(e.target.value)}
-
             required
             id = 'ingredients2'
             name = 'ingredients2'
@@ -236,7 +243,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients3(e.target.value)}
-
             id = 'ingredients3'
             name = 'ingredients3'
           />
@@ -246,7 +252,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients4(e.target.value)}
-
             id = 'ingredients4'
             name = 'ingredients4'
           />
@@ -256,7 +261,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients5(e.target.value)}
-
             id = 'ingredients5'
             name = 'ingredients5'
           />
@@ -266,7 +270,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients6(e.target.value)}
-
             id = 'ingredients6'
             name = 'ingredients6'
           />
@@ -276,7 +279,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients7(e.target.value)}
-
             id = 'ingredients7'
             name = 'ingredients7'
           />
@@ -286,7 +288,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients8(e.target.value)}
-
             id = 'ingredients8'
             name = 'ingredients8'
           />
@@ -296,7 +297,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients9(e.target.value)}
-
             id = 'ingredients9'
             name = 'ingredients9'
           />
@@ -306,7 +306,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setIngredients10(e.target.value)}
-
             id = 'ingredients10'
             name = 'ingredients10'
           />
@@ -316,7 +315,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction(e.target.value)}
-
             required
             id = 'instruction'
             name = 'instruction'
@@ -327,7 +325,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction1(e.target.value)}
-
             required
             id = 'instruction1'
             name = 'instruction1'
@@ -338,7 +335,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction2(e.target.value)}
-
             required
             id = 'instruction2'
             name = 'instruction2'
@@ -349,7 +345,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction3(e.target.value)}
-
             id = 'instruction3'
             name = 'instruction3'
           />
@@ -359,7 +354,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction4(e.target.value)}
-
             id = 'instruction4'
             name = 'instruction4'
           />
@@ -369,7 +363,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction5(e.target.value)}
-
             id = 'instruction5'
             name = 'instruction5'
           />
@@ -379,7 +372,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction6(e.target.value)}
-
             id = 'instruction6'
             name = 'instruction6'
           />
@@ -389,7 +381,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction7(e.target.value)}
-
             id = 'instruction7'
             name = 'instruction7'
           />
@@ -399,7 +390,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction8(e.target.value)}
-
             id = 'instruction8'
             name = 'instruction8'
           />
@@ -409,7 +399,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction9(e.target.value)}
-
             id = 'instruction9'
             name = 'instruction9'
           />
@@ -419,7 +408,6 @@ const CreateRecipe = (props) => {
           <Input
             type = "text"
             onChange={(e) => setInstruction10(e.target.value)}
-
             id = 'instruction10'
             name = 'instruction10'
           />

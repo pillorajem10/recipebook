@@ -70,7 +70,7 @@ const NewRecipes = () => {
                    </Box>
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
-                   <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
+                   <Rating precision={.2} readOnly value={recipes.rating.toFixed(1)}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
                    <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>

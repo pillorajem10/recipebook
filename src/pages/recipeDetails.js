@@ -31,6 +31,14 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: '100%',
+    '& label.Mui-focused': {
+      color: '#FF3F16',
+    },
+    '& .MuiOutlinedInput-root': {
+        '&.Mui-focused fieldset': {
+            borderColor: '#FF3F16',
+        },
+    },
   },
 }));
 
@@ -177,8 +185,8 @@ if(!recipe.reviews) return null
                  multiline
                  name="comment"
                  onChange={(e) => setComment(e.target.value)}
+                 variant="outlined"
                  rows={4}
-                 variant="filled"
                />
              </FormControl>
            </div>
@@ -205,7 +213,7 @@ if(!recipe.reviews) return null
                ) : (
                  <b style = {{ fontSize: '1.1rem' }} >{review.name}</b>
                ) }
-               <div><Rating readOnly value={review.rating}/></div>
+               <div><Rating precision={.1} readOnly value={review.rating}/></div>
                <div style = {{ fontSize: '1rem' }} >{review.comment}</div>
              </div>
              </>

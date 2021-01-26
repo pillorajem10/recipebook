@@ -17,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 
 //styling for material ui
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '3%',
     marginBottom: '3%',
     width: '100%',
+    '& label.Mui-focused': {
+      color: '#FF3F16',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#FF3F16',
+    },
   },
+
 }));
 
 const CreateCategory = () => {
@@ -89,12 +97,13 @@ const CreateCategory = () => {
       {!success && error && showError()}
       <form onSubmit = {submitHandler} className = 'form-container'>
         <FormControl className={(classes.margin, classes.textField)}>
-          <InputLabel color="primary">Name of the new category</InputLabel>
+          <InputLabel>Name of category</InputLabel>
           <Input
             type = "text"
             onChange={(e) => setName(e.target.value)}
             style = {{width: '100%'}}
             required
+            label="category"
             id = 'name'
             name = 'name'
           />

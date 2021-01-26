@@ -59,7 +59,7 @@ const Home = () => {
         <>
           {
            recipes.map( recipes =>
-            <Card key={recipes.name} className={classes.root}> 
+            <Card key={recipes.name} className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}
@@ -79,7 +79,7 @@ const Home = () => {
                    </Box>
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
-                   <Rating readOnly value={recipes.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
+                   <Rating precision={.2} readOnly value={recipes.rating.toFixed(1)}/> <div style = {{fontSize: "1.5rem"}}>{recipes.rating.toFixed(1)}</div>
                  </Typography>
                  <Typography variant="body2" color="textSecondary" component="p">
                    <div style = {{fontSize: "1rem"}}>Number of reviews: {recipes.numReviews}</div>

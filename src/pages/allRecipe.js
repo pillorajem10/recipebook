@@ -99,7 +99,7 @@ const AllRecipe = ({ location }) => {
              </Box>
            </Typography>
            <Typography variant="body2" color="textSecondary" component="p">
-             <Rating readOnly value={recipe.rating}/> <div style = {{fontSize: "1.5rem"}}>{recipe.rating.toFixed(1)}</div>
+             <Rating precision={.2} readOnly value={recipe.rating.toFixed(1)}/> <div style = {{fontSize: "1.5rem"}}>{recipe.rating.toFixed(1)}</div>
            </Typography>
            <Typography variant="body2" color="textSecondary" component="p">
              <div style = {{fontSize: "1rem"}}>Number of reviews: {recipe.numReviews}</div>

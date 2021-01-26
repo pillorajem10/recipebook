@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginTop: '3%',
     width: '100%',
+    '& label.Mui-focused': {
+      color: '#FF3F16',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#FF3F16',
+    },
   },
 }));
 
