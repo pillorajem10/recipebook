@@ -13,17 +13,26 @@ import Rating from '@material-ui/lab/Rating';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
-import Pagination from "@material-ui/lab/Pagination";
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  paginator: {
-    justifyContent: "center",
-    padding: "10px",
-    marginTop:'1%',
-    backgroundColor: "#FFFFFF",
-  }
-});
+//styling for material-ui
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: '100%',
+  },
+}));
 
 const RecipeDetails = (props) => {
   const {recipe, loading, error} = useSelector(state => state.recipeDetails);
@@ -102,7 +111,7 @@ if(!recipe.reviews) return null
       )
     }
      <center className = 'recipeName'>{recipe.name}</center>
-     <div className = 'details-container'>
+     <div key={recipe.name} className = 'details-container'>
        <div className = 'card'>
          <img
            src={`/recipe/photo1/${recipe._id}`}
@@ -144,57 +153,62 @@ if(!recipe.reviews) return null
        </div>
      </div>
      <hr/>
-     <center className = 'welcomeTitle'>Rate this recipe</center>
-     <center><Rating
-       name="rating"
-       id='rating'
-       value={rating}
-       onChange={(event, newValue) => {
-         setRating(newValue);
-       }}
-     />
-     <hr/></center>
-     <center className = 'welcomeTitle'>Write a comment here</center>
+     <div className="reviews">
+       <div className = 'reviewsTitle'>Rate this recipe</div>
+       <Rating
+         name="rating"
+         id='rating'
+         value={rating}
+         onChange={(event, newValue) => {
+           setRating(newValue);
+         }}
+       />
+     </div>
      {userInfo || user ? (
-       <div  className = 'container'>
+       <>
+       <div className = 'reviews'>
+         <div className = 'reviewsTitle'>Write a comment here</div>
          <form className = 'form-container' onSubmit = {submitHandler}>
            <div class="form-group">
-             <textarea
-              rows = '5'
-              type = "text"
-              className = "form-control"
-              placeholder = "Do you have comments in this recipe? Write here."
-              required
-              name = 'comment'
-              id = 'comment'
-              value = {comment}
-              onChange={(e) => setComment(e.target.value)}
-             />
+             <FormControl className={(classes.margin, classes.textField)}>
+               <TextField
+                 id="comment"
+                 label="Comment"
+                 multiline
+                 name="comment"
+                 onChange={(e) => setComment(e.target.value)}
+                 rows={4}
+                 variant="filled"
+               />
+             </FormControl>
            </div>
            <Button variant="contained" type="submit">Comment</Button>
          </form>
        </div>
+       </>
      ) : (
        <div>
          Please <Link to="/">Sign-in</Link> to write a reviews.
        </div>
      )}
      <hr/>
-     <center>
-       <center className = 'welcomeTitle'>Reviews</center>
+     <div className="reviews" >
+       <div className = 'reviewsTitle'>Reviews</div>
        {recipe.reviews.length > 0 ? (
          <div>
            {recipe.reviews && recipe.reviews
              .map((review) => (
-             <div key={review._id}>
+              <>
+             <div style={{marginTop:'2.5rem'}} key={review._id}>
                { review.userRole === 1 ? (
-                 <b style = {{ fontSize: '1.2rem' }} >{review.name} (Admin)</b>
+                 <b style = {{ fontSize: '1.1rem' }} >{review.name} (Admin)</b>
                ) : (
-                 <b style = {{ fontSize: '1.2rem' }} >{review.name}</b>
+                 <b style = {{ fontSize: '1.1rem' }} >{review.name}</b>
                ) }
                <div><Rating readOnly value={review.rating}/></div>
-               <div style = {{ fontSize: '1.5rem' }} >{review.comment}</div>
+               <div style = {{ fontSize: '1rem' }} >{review.comment}</div>
              </div>
+             </>
            ))}
          </div>
        ) : (
@@ -202,7 +216,7 @@ if(!recipe.reviews) return null
           There are no reviews in this recipe. Write the first one
          </h3>
        )}
-     </center>
+     </div>
     </>
   )
 }

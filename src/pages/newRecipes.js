@@ -50,7 +50,7 @@ const NewRecipes = () => {
         <>
           {
            recipes.map( recipes =>
-            <Card className={classes.root}>
+            <Card key={recipes.name} className={classes.root}>
                <CardMedia
                  component="img"
                  alt={recipes.name}

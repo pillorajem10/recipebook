@@ -24,8 +24,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ClearIcon from '@material-ui/icons/Clear';
 import ListItem from '@material-ui/core/ListItem';
 
 const HideAppBar = (props) => {
@@ -93,7 +92,7 @@ const HideAppBar = (props) => {
           >
             <div>
               <IconButton onClick={handleDrawerClose}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                <ClearIcon/>
               </IconButton>
             </div>
             <Divider />
