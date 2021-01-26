@@ -44,7 +44,7 @@ const NewRecipes = () => {
   return (
     loading? null : error? <div>{error}</div> :
     <>
-      <center className = 'welcomeTitle'>New recipes for you</center>
+      <center style={{marginTop:"2%"}} className = 'welcomeTitle'>New recipes for you</center>
       <div className = 'home-container'>
       { recipes.length > 0 ? (
         <>
@@ -56,7 +56,7 @@ const NewRecipes = () => {
                  alt={recipes.name}
                  height="250"
                  image={`/recipe/photo/${recipes._id}`}
-                 title="Contemplative Reptile"
+                 title={recipes.name}
                />
                <CardContent>
                  <Typography gutterBottom variant="h6">

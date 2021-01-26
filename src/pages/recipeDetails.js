@@ -91,7 +91,7 @@ if(!recipe) return null
 if(!recipe.reviews) return null
 
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
+    loading? <center className='loading1' ><CircularProgress color = 'dark' /></center> : error? <div>{error}</div> :
     <>
     {recipeReviewSave && showSuccess()}
     {

@@ -89,7 +89,7 @@ const CreateCategory = () => {
       {!success && error && showError()}
       <form onSubmit = {submitHandler} className = 'form-container'>
         <FormControl className={(classes.margin, classes.textField)}>
-          <InputLabel color="primary">Enter the name of the new category</InputLabel>
+          <InputLabel color="primary">Name of the new category</InputLabel>
           <Input
             type = "text"
             onChange={(e) => setName(e.target.value)}

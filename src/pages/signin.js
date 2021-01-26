@@ -145,7 +145,7 @@ const Signin = () => {
   document.title='Recipebook';
 
   return (
-      loading? <CircularProgress color = 'dark' className = 'loading1' />  :
+      loading? <center className='loading1' ><CircularProgress color = 'dark' /></center> :
       <>
        {signInForm()}
       </>

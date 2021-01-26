@@ -23,9 +23,9 @@ const useStyles = makeStyles({
   root: {
     maxHeight: "35rem",
     maxWidth: "15rem",
-    marginTop: '1rem',
     marginLeft: '.7rem',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    marginTop: '1rem'
   },
 });
 
@@ -51,9 +51,9 @@ const Home = () => {
   }, []);
 
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
+    loading? <center className='loading1' ><CircularProgress color = 'dark' /></center> : error? <div>{error}</div> :
     <>
-      <center className = 'welcomeTitle'>Here our most popular recipes</center>
+      <center className = 'welcomeTitle'>Popular recipes</center>
       <div className = 'home-container'>
       { recipes.length > 0 ? (
         <>
@@ -65,7 +65,7 @@ const Home = () => {
                  alt={recipes.name}
                  height="250"
                  image={`/recipe/photo/${recipes._id}`}
-                 title="Contemplative Reptile"
+                 title={recipes.name}
                />
                <CardContent>
                  <Typography gutterBottom variant="h6">

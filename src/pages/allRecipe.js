@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     maxHeight: "33rem",
     maxWidth: "15rem",
     marginLeft: '.7rem',
+    marginTop: "1rem",
     whiteSpace: 'nowrap'
   },
   paginator: {
