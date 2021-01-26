@@ -456,7 +456,7 @@ const CreateRecipe = (props) => {
   document.title = 'Recipebook | CreateRecipe'
 
   return (
-    loading? <CircularProgress color = 'dark' className = 'loading' /> :
+    loading? <CircularProgress color = 'dark' className = 'loading1' /> :
     <>
      {addRecipeForm()}
     </>

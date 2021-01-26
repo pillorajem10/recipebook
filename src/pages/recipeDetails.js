@@ -26,23 +26,18 @@ const useStyles = makeStyles({
 });
 
 const RecipeDetails = (props) => {
+  const {recipe, loading, error} = useSelector(state => state.recipeDetails);
+
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const [openSnackBar, setOpenSnackBar] = useState(false);
-  const [commentsPerPage] = useState(3);
-  const [page, setPage] = useState(1);
 
-  const {recipe, loading, error} = useSelector(state => state.recipeDetails);
   const { user } = useSelector((state) => state.userSignin);
   const { userInfo } = useSelector((state) => state.userRegister);
   const { success: recipeReviewSave } = useSelector((state) => state.addReview);
 
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
 
   useEffect(() => {
     if (recipeReviewSave) {
@@ -92,6 +87,8 @@ const showSuccess = () => (
   </Snackbar>
 );
 
+if(!recipe) return null
+if(!recipe.reviews) return null
 
   return (
     loading? <CircularProgress color = 'dark' className = 'loading1' /> : error? <div>{error}</div> :
@@ -185,10 +182,9 @@ const showSuccess = () => (
      <hr/>
      <center>
        <center className = 'welcomeTitle'>Reviews</center>
-       {recipe.reviews && recipe.reviews.length > 0 ? (
+       {recipe.reviews.length > 0 ? (
          <div>
            {recipe.reviews && recipe.reviews
-             .slice((page - 1) * commentsPerPage, page * commentsPerPage)
              .map((review) => (
              <div key={review._id}>
                { review.userRole === 1 ? (
@@ -200,23 +196,6 @@ const showSuccess = () => (
                <div style = {{ fontSize: '1.5rem' }} >{review.comment}</div>
              </div>
            ))}
-           {
-             recipe.reviews.length <= commentsPerPage ? (
-               null
-             ) : (
-               <Pagination
-                 count={Math.ceil(recipe.reviews.length / commentsPerPage)}
-                 page={page}
-                 onChange={handleChange}
-                 defaultPage={1}
-                 color="primary"
-                 size="large"
-                 showFirstButton
-                 showLastButton
-                 classes={{ ul: classes.paginator }}
-               />
-             )
-           }
          </div>
        ) : (
          <h3>

@@ -109,7 +109,7 @@ const CreateCategory = () => {
   document.title = 'Recipebook | CreateCategory'
 
   return(
-    loading? <CircularProgress color = 'dark' className = 'loading' /> :
+    loading? <CircularProgress color = 'dark' className = 'loading1' /> :
     <>
      {createCategoryForm()}
     </>

@@ -41,7 +41,6 @@ HideOnScroll.propTypes = {
 };
 
 const HideAppBar = (props) => {
-
   const [searchKeyword, setSearchKeyword] = useState('');
 
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const HideAppBar = (props) => {
 
   const handleLogout = () => {
     dispatch(rbook.user.logout());
-  }
+  };
 
   const { user } = useSelector((state) => state.userSignin);
   const { userInfo } = useSelector((state) => state.userRegister);
@@ -68,28 +67,29 @@ const HideAppBar = (props) => {
   return (
     <React.Fragment>
       <CssBaseline />
+      <div className='appbar1'>
       <HideOnScroll {...props}>
-        <AppBar className = 'appbar' style={{ background: '#000000' }}>
+        <AppBar  style={{ background: '#000000' }}>
           <Toolbar>
-          <ul>
-          <li className = 'title'><img src = {logo} alt = 'logo'/></li>
-            {userInfo || user ? (
+            <ul className = "navigation">
+              <li className = 'title'><img src = {logo} alt = 'logo'/></li>
+              {userInfo || user ? (
               <>
-              <div>
-                <form onSubmit={submitHandler}>
-                  <TextField
-                   placeholder = 'Search for recipes?'
-                   className = 'searchBar'
-                   style = {{ marginTop: '3%' }}
-                   id="outlined-search"
-                   type="search"
-                   variant="outlined"
-                   name="searchKeyword"
-                   value={searchKeyword}
-                   onChange={(e) => setSearchKeyword(e.target.value)}
-                  />
-                </form>
-              </div>
+                <div>
+                  <form onSubmit={submitHandler}>
+                    <TextField
+                     placeholder = 'Search for recipes?'
+                     className = 'searchBar'
+                     style = {{ marginTop: '3%' }}
+                     id="outlined-search"
+                     type="search"
+                     variant="outlined"
+                     name="searchKeyword"
+                     value={searchKeyword}
+                     onChange={(e) => setSearchKeyword(e.target.value)}
+                    />
+                  </form>
+                </div>
                 <li><Link to = '/home'>Home</Link></li>
                 <li><Link to = '/about'>About Us</Link></li>
                 {
@@ -108,6 +108,7 @@ const HideAppBar = (props) => {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
+      </div>
       <Toolbar />
       <Container>
       </Container>

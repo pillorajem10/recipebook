@@ -6,6 +6,7 @@ import './App.css'
 
 //components
 import Navbar from './components/navbar';
+import NavbarLow from './components/navbarLow';
 import Footer from './components/footer';
 
 //pages
@@ -32,7 +33,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      //<Navbar/>
+      <Navbar/>
+      <NavbarLow/>
       <Switch>
          <LoggedInRoute path='/' exact={true} component={Signin}/>
          <PrivateRoute path='/home' component={MainHome}/>
