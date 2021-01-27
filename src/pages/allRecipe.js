@@ -44,7 +44,7 @@ const AllRecipe = ({ location }) => {
   document.title='Recipebook | All Recipes';
 
   const recipeListAll = useSelector(state => state.recipeListAll);
-  const { loading, error } = recipeListAll;
+  const { recipes, loading, error } = recipeListAll;
 
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -124,10 +124,10 @@ const AllRecipe = ({ location }) => {
         {loading && <CircularProgress color = 'dark' className = 'loading' />}
         {error && <div>{error}</div>}
 
-        {recipeList.length === 0 &&
+        {recipes && recipes.length === 0 &&
           <div style = {{fontSize: '4rem'}} >No recipes found</div>
         }
-        {recipeList.map((recipe, index) => (
+        {recipes && recipes.map((recipe, index) => (
           createBanana(recipe, index)
         ))}
       </div>
@@ -138,8 +138,8 @@ const AllRecipe = ({ location }) => {
         ) : (
           <Pagination
             style = {{ display: loading && 'none' }}
-            count={pageDetails.totalPages}
-            page={pageDetails.pageIndex}
+            count={pageDetails && pageDetails.totalPages}
+            page={pageDetails && pageDetails.pageIndex}
             defaultPage={1}
             color="primary"
             size="large"

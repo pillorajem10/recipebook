@@ -104,9 +104,6 @@ const showSuccess = () => (
   </Snackbar>
 );
 
-if(!recipe) return null
-if(!recipe.reviews) return null
-
   return (
     loading? <center className='loading1' ><CircularProgress color = 'dark' /></center> : error? <div>{error}</div> :
     <>
@@ -202,7 +199,7 @@ if(!recipe.reviews) return null
      <hr/>
      <div className="reviews" >
        <div className = 'reviewsTitle'>Reviews</div>
-       {recipe.reviews.length > 0 ? (
+       {recipe.reviews && recipe.reviews.length > 0 ? (
          <div>
            {recipe.reviews && recipe.reviews
              .map((review) => (

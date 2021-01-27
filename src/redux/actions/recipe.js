@@ -33,7 +33,7 @@ export const listAllRecipes = (pageIndex = '', pageSize = '' ) => async (dispatc
     const { data } = await axios.get(
     '/recipe?pageIndex=' + pageIndex + '&pageSize=' + pageSize
      );
-    dispatch({type: types.RECIPE_LIST_ALL_SUCCESS, payload: data});
+    dispatch({type: types.RECIPE_LIST_ALL_SUCCESS, payload: data.docs});
     return data
   }
   catch(error){
